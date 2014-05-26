@@ -1,0 +1,34 @@
+
+# shortcut to this dotfiles path
+export DOTFILES=$HOME/.dotfiles
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOTFILES/*/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  echo "sourcing path $file"
+  source $file
+done
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  echo "sourcing $file"
+  source $file
+done
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+# load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  echo "sourcing completion $file"
+  source $file
+done
+
+unset config_files

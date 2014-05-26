@@ -1,0 +1,29 @@
+{
+	"installed_packages":
+	[
+		"ApplySyntax",
+		"Dockerfile Syntax Highlighting",
+		"EditorConfig",
+		"editorconfig",
+		"Git Conflict Resolver",
+		"GoSublime",
+		"HexViewer",
+		"Increment Selection",
+		"JSONLint",
+		"Makefile Improved",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"nginx",
+		"PHP-Twig",
+		"Phpcs",
+		"PHPUnit Completions",
+		"Search in Project",
+		"SideBarGit",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-phpcs",
+		"Theme - Phoenix",
+		"Theme - Soda",
+		"Theme - Spacegray"
+	]
+}
