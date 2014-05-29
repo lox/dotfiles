@@ -18,3 +18,6 @@ fi
 echo "Linking $volume/ssh $HOME/.ssh"
 ln -fs $volume/ssh $HOME/.ssh
 
+echo "Linking $volume/aws $HOME/.aws"
+ln -fs $volume/aws $HOME/.aws
+

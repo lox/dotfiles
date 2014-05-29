@@ -18,5 +18,5 @@ if ! brew cask &> /dev/null ; then
   brew cask install caskroom/fonts/font-symbola
 fi
 
-# Install homebrew packages
-brew install grc coreutils spark pv wget ag
+# Install core homebrew packages
+brew install grc coreutils spark pv wget ag hub

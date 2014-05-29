@@ -2,7 +2,7 @@
 #
 # Bootstrap a fresh system
 
-if ! -d "$HOME/.dotfiles" ; then	
+if [ ! -d $HOME/.dotfiles ] ; then	
   git clone --recursive https://github.com/lox/dotfiles.git "$HOME/.dotfiles"
 fi
 

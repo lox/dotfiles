@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+set -x
+
 # Some stuff was taken from
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 # https://github.com/paulmillr/dotfiles/blob/master/etc/osx.sh
@@ -9,7 +11,7 @@
 # ====
 
 # Show battery life percentage.
-#defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
@@ -34,8 +36,8 @@ defaults write com.apple.screencapture location "$HOME/Downloads/"
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# SSD-specific tweaks                                                         #
-# =====================
+# Power management and SSD tweaks
+# ===============================
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -44,14 +46,16 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 sudo tmutil disablelocal
 
 # Disable hibernation (speeds up entering sleep mode)
-#sudo pmset -a hibernatemode 0
+sudo pmset -a hibernatemode 0
+
+# Set standby delay and auto power off to 12 hours (default is 1 hour)
+sudo pmset -a standbydelay 43200
+sudo pmset -a autopoweroffdelay 43200
 
 # Remove the sleep image file to save disk space
-#sudo rm /Private/var/vm/sleepimage
-# Create a zero-byte file instead…
-#sudo touch /Private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-#sudo chflags uchg /Private/var/vm/sleepimage
+sudo rm /Private/var/vm/sleepimage
+sudo touch /Private/var/vm/sleepimage
+sudo chflags uchg /Private/var/vm/sleepimage
 
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
@@ -62,8 +66,18 @@ sudo pmset -a sms 0
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# Finder: show hidden files
+defaults write com.apple.finder AppleShowAllFiles -bool false
+
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Finder: avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Disable disk image verification
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
@@ -83,7 +97,7 @@ chflags nohidden ~/Library
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
 # Desktop icons
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
@@ -96,6 +110,18 @@ defaults write com.apple.sidebarlists systemitems -dict-add ShowHardDisks -bool 
 
 # Enable text selection in QuickLook
 defaults write com.apple.finder QLEnableTextSelection -bool true
+
+# Default sidebar icon size to small
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
+# Show Path bar in Finder
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Should remove downloaded from the internet warnings
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Safari
 # ======
@@ -165,6 +191,12 @@ defaults write org.m0k.transmission WarningDonate -bool false
 
 # Hide the legal disclaimer
 defaults write org.m0k.transmission WarningLegal -bool false
+
+# Keyboard
+# ========
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Memory management
 # =================

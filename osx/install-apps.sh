@@ -1,8 +1,5 @@
 #!/bin/bash -x -e
 
-which brew || ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-brew cask || brew tap phinze/homebrew-cask && brew install brew-cask
-
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # desktop apps
