@@ -1,5 +1,0 @@
-{
-	"env": { "GOROOT": "/usr/local/opt/go/libexec", "GOPATH": "$HOME/.go" },
-	"fmt_tab_width": 4,
-	"fmt_cmd": ["goimports"]
-}
