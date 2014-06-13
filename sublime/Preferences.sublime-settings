@@ -1,5 +1,6 @@
 {
 	"atomic_save": false,
+	"color_scheme": "Packages/User/Monokai (SL).tmTheme",
 	"detect_indentation": true,
 	"draw_white_space": "all",
 	"folder_exclude_patterns":
@@ -15,7 +16,13 @@
 		".assetic"
 	],
 	"font_face": "Menlo",
-	"font_size": 16,
+	"font_size": 17,
+	"ignored_packages":
+	[
+		"Makefile",
+		"Vintage",
+		"Markdown"
+	],
 	"spell_check": false,
 	"trim_trailing_white_space_on_save": true
 }

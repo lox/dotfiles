@@ -19,4 +19,4 @@ if ! brew cask &> /dev/null ; then
 fi
 
 # Install core homebrew packages
-brew install grc coreutils spark pv wget ag hub
+brew install grc coreutils spark pv wget ag hub fasd

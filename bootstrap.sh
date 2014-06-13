@@ -2,7 +2,7 @@
 #
 # Bootstrap a fresh system
 
-if [ ! -d $HOME/.dotfiles ] ; then	
+if [ ! -d $HOME/.dotfiles ] ; then
   git clone --recursive https://github.com/lox/dotfiles.git "$HOME/.dotfiles"
 fi
 
@@ -15,10 +15,5 @@ do
   echo "linking $src -> $dst"
   ln -sf $src $dst
 done
-
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ] ; then
-	bin/dot
-fi
 
 ./install.sh

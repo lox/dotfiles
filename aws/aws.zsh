@@ -31,24 +31,30 @@ function rds_instances {
   aws rds describe-db-instances | jq '[.DBInstances[]]'
 }
 
-# list ec2 instances, optionally with Tag=Value filters
+# helper for listing running ec2 instances
 function ec2_instances {
-  if (($+1)); then
-    array=(${(s/=/)1})
-    ec2_instances | jq_tag $array[1] $array[2]
-  else
-    aws ec2 describe-instances | \
-      jq '[.Reservations[].Instances[] | select(.State.Name == "running")]'
-  fi
-}
+  zparseopts -D -E -A args -- t=o_tag h=o_help j=o_json
 
-# extract just the hostnames
-function ec2_hostnames {
-  if [[ ! -z "$1" && "$1" == "-t" ]]; then
-    jq -r '.[] | {(.PublicDnsName): .Tags}'
-  else
-    jq -r '.[] | .PublicDnsName'
+  if [[ "$o_help" != "" ]]; then
+    echo Usage: ec2_instances "--tags [FILTER]"
+    return 1
   fi
+
+  if [[ -n "$1" ]] ; then
+    filter=".[] | select(((.Tags[] | .Key + \"=\" + .Value)) | index(\"$1\") != -1)"
+  fi
+
+  if [[ -n "$o_tag" ]] ; then
+    output='"\n"+.PublicDnsName, (.Tags[] | "\t" + .Key + "=" + .Value) | index("99dev")'
+  elif [[ -n "$o_json" ]] ; then
+    output='.'
+  else
+    output='.PublicDnsName'
+  fi
+
+  aws ec2 describe-instances | \
+    jq -r "[.Reservations[].Instances[] | select(.State.Name == \"running\")] | ${filter-.[]} | $output"
+
 }
 
 # open an iterm with ssh connections to hosts from stdin

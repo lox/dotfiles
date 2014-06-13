@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby                                                             
+
+# ssh helper, reads hosts from stdin
+# see https://github.com/opscode/chef/blob/master/chef/lib/chef/knife/ssh.rb
+
+require 'rubygems'
+require 'optparse'
+require 'json'
+
+options = {
+  :verbose => false,
+  :user => false
+}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: awsssh.rb [options]"
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+  opts.on("-u", "--user USERNAME", "Username to log in with") do |s|
+    options[:user] = s
+  end
+end.parse!
+
+input = STDIN.read
+
+# detect if stdin is json
+if input.match /^[{\[]/
+  servers = JSON.parse(input)
+else
+  servers = input.split("\n").collect do |a|
+    { 'dns_name' => a, 'tags' => {} }
+  end
+end
+
+def iterm(servers, options)
+  command = '
+    tell application "iTerm"
+      activate
+      set myterm to (make new terminal)
+  '
+  servers.each_with_index do |server, t|
+    command << %Q|
+    tell myterm
+        set mysession to (make new session at the end of sessions)
+        tell mysession
+            exec command "/usr/bin/ssh #{options[:user] ? options[:user]+'@'+server['dns_name'] : server['dns_name']}" 
+            set name to "#{server['tags'].key?('Name') ? server['tags']['Name'] : server['dns_name']}"
+        end tell
+    end tell\n|
+  end
+  command << '
+    end tell
+  '
+  exec "osascript -e '#{command}' > /dev/null"
+end
+
+iterm servers, options

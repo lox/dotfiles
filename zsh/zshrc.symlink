@@ -1,6 +1,14 @@
 
+## Primary zsh file, delegates to .dotfiles/**/.zsh
+
 # shortcut to this dotfiles path
 export DOTFILES=$HOME/.dotfiles
+
+# load plugin bundles
+for bundle in $DOTFILES/zsh/bundles/* ; do
+  #test -d $bundle && bundle=$bundle/${bundle##*/}.zsh
+  #test -f $bundle && source $bundle
+done
 
 # all of our zsh files
 typeset -U config_files
@@ -9,12 +17,14 @@ config_files=($DOTFILES/*/*.zsh)
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
+  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
+  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
@@ -25,7 +35,12 @@ compinit
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
+  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
 unset config_files
+
+# delegate to defaults
+test ! -e ~/.profile || source ~/.profile
+test ! -e ~/.zprofile || source ~/.zprofile

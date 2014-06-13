@@ -30,12 +30,12 @@ git_prompt_info () {
 }
 
 unpushed () {
-  git log @{upstream}.. 2>/dev/null
+  git log @{upstream}.. 2>/dev/null || return
   #/usr/bin/git cherry -v @{upstream} 2>/dev/null
 }
 
 need_push () {
-  if [[ $(unpushed) == "" ]]
+  if [[ -z $(unpushed) ]]
   then
     echo " "
   else

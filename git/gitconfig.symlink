@@ -10,6 +10,7 @@
   attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   editor = /usr/bin/vim
+	autocrlf = false
 
 [alias]
   st = status
@@ -53,3 +54,5 @@
 
 [merge]
   log = true
+[credential]
+	helper = osxkeychain

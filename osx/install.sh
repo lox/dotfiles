@@ -7,11 +7,6 @@ brew cask install alfred
 brew cask install google-chrome
 brew cask install iterm2
 brew cask install rdio
-brew cask install qlcolorcode
-brew cask install qlmarkdown
-brew cask install qlstephen
-brew cask install quicklook-csv
-brew cask install quicklook-json
 brew cask install sequel-pro
 brew cask install skype
 brew cask install transmission
