@@ -15,8 +15,12 @@ fi
 if ! brew cask &> /dev/null ; then
   brew tap phinze/homebrew-cask
   brew install brew-cask
-  brew cask install caskroom/fonts/font-symbola
+  brew tap caskroom/fonts
+  brew tap caskroom/versions
+  brew cask install font-inconsolata
+  brew cask install font-source-code-pro
 fi
 
 # Install core homebrew packages
 brew install grc coreutils spark pv wget ag hub fasd
+

@@ -5,9 +5,13 @@
 export DOTFILES=$HOME/.dotfiles
 
 # load plugin bundles
-for bundle in $DOTFILES/zsh/bundles/* ; do
-  #test -d $bundle && bundle=$bundle/${bundle##*/}.zsh
-  #test -f $bundle && source $bundle
+plugins=(
+  zsh-history-substring-search
+  zsh-syntax-highlighting
+)
+
+for p in ${plugins[@]} ; do
+  source $DOTFILES/zsh/bundles/${p}/${p}.zsh
 done
 
 # all of our zsh files

@@ -17,11 +17,17 @@ function awp {
   export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
   export AWS_ACCESS_KEY=$(grep '^AWSAccessKeyId' "$AWS_CREDENTIAL_FILE" | cut -d= -f2)
   export AWS_SECRET_KEY=$(grep '^AWSSecretKey'   "$AWS_CREDENTIAL_FILE" | cut -d= -f2)
+  export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+  export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
 }
 
 if [ -d ~/.aws ] ; then
   awp 99designs
 fi
+
+u() {
+  ssh ubuntu@"$@"
+}
 
 # aws-cli helpers
 # ----------------------------
@@ -41,11 +47,11 @@ function ec2_instances {
   fi
 
   if [[ -n "$1" ]] ; then
-    filter=".[] | select(((.Tags[] | .Key + \"=\" + .Value)) | index(\"$1\") != -1)"
+    filter=".[] | select(((.Tags[] | .Key + \"=\" + .Value)) | index(\"$1\") != null)"
   fi
 
   if [[ -n "$o_tag" ]] ; then
-    output='"\n"+.PublicDnsName, (.Tags[] | "\t" + .Key + "=" + .Value) | index("99dev")'
+    output='"\n"+.PublicDnsName, (.Tags[] | "\t" + .Key + "=" + .Value)'
   elif [[ -n "$o_json" ]] ; then
     output='.'
   else
@@ -53,13 +59,12 @@ function ec2_instances {
   fi
 
   aws ec2 describe-instances | \
-    jq -r "[.Reservations[].Instances[] | select(.State.Name == \"running\")] | ${filter-.[]} | $output"
-
+    jq -r "[.Reservations[].Instances[] | select(.State.Name == \"running\")] ${filter:-} | $output"
 }
 
 # open an iterm with ssh connections to hosts from stdin
 function ec2_ssh {
-  ec2_instances $@ | ec2_hostnames | mssh -u ubuntu
+  ec2_instances $@ | tabterm "ssh ubuntu@"
 }
 
 # tests whether a host is ssh accessible
@@ -138,6 +143,7 @@ function rds_tunnel() {
 # opens an rds tunnel
 # args: <instance group> <rds instance> <mysql user>
 function rds_shell() {
+  set -x
   if [ "$#" -lt 3 ]; then
     echo "Usage: $0 <instance group> <rds instance> <mysql user>" >&2
     return 1

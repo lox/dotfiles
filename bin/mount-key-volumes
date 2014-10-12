@@ -21,3 +21,5 @@ ln -fs $volume/ssh $HOME/.ssh
 echo "Linking $volume/aws $HOME/.aws"
 ln -fs $volume/aws $HOME/.aws
 
+echo "Linking $volume/gnupg $HOME/.gnupg"
+ln -fs $volume/gnupg $HOME/.gnupg

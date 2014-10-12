@@ -13,8 +13,15 @@ setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt TRANSIENTRPROMPT # only have the rprompt on the last line
 
-bindkey '^[OA' history-beginning-search-backward
-bindkey '^[OB' history-beginning-search-forward
+# zmodload zsh/terminfo
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+#bindkey '^[[A' up-line-or-history
+#bindkey '^[[B' down-line-or-history
 
 # Use modern completion system
 zstyle ':completion:*' auto-description 'specify: %d'

@@ -5,7 +5,7 @@ function _aws_profiles {
 }
 
 if [ -f /usr/local/bin/aws_zsh_completer.sh ] ; then
-  #source /usr/local/bin/aws_zsh_completer.sh
+  source /usr/local/bin/aws_zsh_completer.sh
 fi
 
 compctl -K _aws_profiles awp

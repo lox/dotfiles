@@ -1,32 +1,19 @@
 [user]
   name = Lachlan Donald
   email = lachlan@ljd.cc
-
-[apply]
-  whitespace = fix
+	signingkey = B5289A75
 
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   editor = /usr/bin/vim
-	autocrlf = false
+  mergeoptions = --no-ff
 
-[alias]
-  st = status
-  co = checkout
-  l  = log --graph
-  r  = !git --no-pager l -20
-  aa = add --all
-  dc = diff --cached
-  ci = commit
-  h =  log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[branch]
+  autosetupmerge = true
 
 [format]
   pretty = format:%C(blue)%h%C(reset) - %s %C(green)- %an%C(reset) %C(blue)(%ar)%C(reset)
-
-[push]
-  default = tracking
 
 [color]
   diff = auto
@@ -36,23 +23,19 @@
   ui = true
   pager = true
 
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+  whitespace = red reverse
 
 [merge]
   log = true
+  tool = sublime
+
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+
+[push]
+  default = current
+
+[mergetool "sublime"]
+  cmd = subl -w $MERGED
+  trustExitCode = false
