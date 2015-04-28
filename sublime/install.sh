@@ -1,7 +1,13 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
-brew cask install sublime-text3
+SETTINGS_DIR="$HOME/Library/Application Support/Sublime Text 3"
 
-cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
-rm -r User
+brew cask install sublime-text-dev
+
+mkdir -p "$SETTINGS_DIR/Packages/" "$SETTINGS_DIR/Installed Packages/" 
+cd "$SETTINGS_DIR/Installed Packages/"
+wget https://sublime.wbond.net/Package%20Control.sublime-package 
+
+cd "$SETTINGS_DIR/Packages/"
+[[ -d User ]] && rm -r User
 ln -s ~/Dropbox/Sublime/User
