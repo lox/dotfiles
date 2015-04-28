@@ -9,3 +9,7 @@ brew cask install rdio
 brew cask install sequel-pro
 brew cask install skype
 brew cask install transmission
+
+# setup php
+brew tap homebrew/php
+brew install php56
