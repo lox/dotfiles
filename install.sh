@@ -14,5 +14,6 @@ if [ "$(uname -s)" == "Darwin" ] ; then
   terminal/install.sh
   aws/install.sh
   go/install.sh
+  ruby/install.sh
 fi
 
