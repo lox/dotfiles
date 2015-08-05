@@ -39,3 +39,5 @@
 [mergetool "sublime"]
   cmd = subl -w $MERGED
   trustExitCode = false
+[url "git@github.com:"]
+	insteadOf = https://github.com/
