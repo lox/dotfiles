@@ -2,31 +2,12 @@
 export AWS_HOME=~/.aws
 export AWS_CONFIG_FILE=~/.aws/config
 export AWS_DEFAULT_REGION=us-east-1
-export AWS_IAM_HOME="/usr/local/opt/aws-iam-tools/libexec"
-export AWS_ELB_HOME="/usr/local/opt/elb-tools/libexec"
-export CS_HOME="/usr/local/opt/aws-cloudsearch"
-
-#export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-#export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-export EC2_HOME="/usr/local/opt/ec2-api-tools/libexec"
 
 # helper command for swapping profiles
 function awp {
+  eval `aws-keychain env $1`
   export AWS_DEFAULT_PROFILE=$1
-  export AWS_CREDENTIAL_FILE=$HOME/.aws/$1/credentials
   export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
-  export AWS_ACCESS_KEY=$(grep '^AWSAccessKeyId' "$AWS_CREDENTIAL_FILE" | cut -d= -f2)
-  export AWS_SECRET_KEY=$(grep '^AWSSecretKey'   "$AWS_CREDENTIAL_FILE" | cut -d= -f2)
-  export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
-  export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
-}
-
-if [ -d ~/.aws ] ; then
-  awp 99designs
-fi
-
-u() {
-  ssh ubuntu@"$@"
 }
 
 # aws-cli helpers

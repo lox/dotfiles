@@ -1,9 +1,12 @@
 
-# auto-complete for above awp
+source $HOME/.dotfiles/aws/keychain/aws-keychain-completion.zsh
+
+# auto-complete for awp
 function _aws_profiles {
-  reply=( default $(grep profile $AWS_HOME/config | sed -e 's/.*profile \([a-zA-Z0-9_-]*\).*/\1/') )
+  reply=( default $(aws-keychain ls | grep -v default) )
 }
 
+# auto-complete for aws cli
 if [ -f "$(brew --prefix)/opt/awscli/libexec/bin/aws_zsh_completer.sh" ] ; then
   source $(brew --prefix)/opt/awscli/libexec/bin/aws_zsh_completer.sh
 fi
