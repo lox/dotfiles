@@ -13,3 +13,6 @@ brew cask install transmission
 # setup php
 brew tap homebrew/php
 brew install php56
+
+# install any launch agents
+cp $DOTFILES/launchd/*.plist ~/Library/LaunchAgents
