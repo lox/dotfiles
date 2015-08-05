@@ -1,4 +1,0 @@
-#!/bin/bash
-
-killall -HUP mDNSResponder
-dscacheutil -flushcache
