@@ -1,0 +1,113 @@
+#!/bin/bash
+
+## aws-keychain    (c) 2014-2015 Paul Annesley    MIT license.
+##
+## Store multiple AWS IAM access keys in Mac OS X keychain and
+## execute commands with AWS credentials in environment.
+##
+##   aws-keychain add <name> # (interactive prompts follow)
+##   aws-keychain add <name> <access_key_id> <secret_access_key> # (beware shell history)
+##   aws-keychain ls
+##   aws-keychain exec <name> <command ... >
+##   aws-keychain rm <name>
+#
+# Note: `aws-keychain ls` is based on an unauthoritative list on disk, as the
+# `security` CLI to keychain cannot enumerate credentials.
+
+set -euo pipefail
+
+: ${AWS_CREDENTIALS_LIST="$HOME/.aws/aws-keychain.list"}
+
+main() {
+  case "${1:-}" in
+    add) aws_keychain_add "$@" ;;
+    exec) aws_keychain_exec "$@" ;;
+    ls) aws_keychain_ls "$@" ;;
+    rm) aws_keychain_rm "$@" ;;
+    *) aws_keychain_usage ;;
+  esac
+}
+
+aws_keychain_add() {
+  [ $# -lt 2 ] && aws_keychain_usage "aws-keychain add"
+  local name="$2"
+  local id="${3:-}"
+  local secret="${4:-}"
+  [ -n "$id" ] ||  read -e -p "Access Key ID: " id
+  [ -n "$secret" ] ||  read -e -s -p "Secret Access Key (hidden): " secret
+  security add-generic-password \
+    -a "$name" \
+    -c "awsv" \
+    -D "access key" \
+    -G "$id" \
+    -j "aws-keychain IAM access key" \
+    -s "Amazon AWS" \
+    -T "" \
+    -w "$secret" \
+    -U
+  mkdir -p "$(dirname "$AWS_CREDENTIALS_LIST")"
+  echo "$name" >> $AWS_CREDENTIALS_LIST
+}
+
+aws_keychain_exec() {
+  [ $# -gt 2 ] || aws_keychain_usage "aws-keychain exec"
+  local name="$2"
+  shift 2
+  local raw="$(aws_keychain_raw "$name")"
+  local id="$(aws_keychain_extract_generic_attribute "$raw")"
+  local secret="$(aws_keychain_extract_password "$raw")"
+  if [ -z "$id" -o -z "$secret" ]; then
+    echo >&2 "No credentials for '$name':"
+    echo >&2 "$raw"
+    exit 1
+  fi
+  AWS_ACCESS_KEY_ID="$id" AWS_SECRET_ACCESS_KEY="$secret" "$@"
+}
+
+aws_keychain_raw() {
+  local name="$1"
+  security find-generic-password \
+    -a "$name" \
+    -c "awsv" \
+    -D "access key" \
+    -s "Amazon AWS" \
+    -g 2>&1
+}
+
+aws_keychain_extract_generic_attribute() {
+  local raw="$1"
+  echo "$raw" | awk 'BEGIN { FS="=" } /^ *"gena"/ { gsub(/^"|"$/, "", $2); print $2 }'
+}
+
+aws_keychain_extract_password() {
+  local raw="$1"
+  echo "$raw" | awk '/^password:/ { gsub(/^"|"$/, "", $2); print $2 }'
+}
+
+aws_keychain_ls() {
+  [ $# -eq 1 ] || aws_keychain_usage "aws-keychain ls"
+  cat $AWS_CREDENTIALS_LIST | sort | uniq
+}
+
+aws_keychain_rm() {
+  [ $# -eq 2 ] || aws_keychain_usage "aws-keychain rm"
+  local name="$2"
+  security delete-generic-password \
+    -a "$name" \
+    -c "awsv" \
+    -D "access key" \
+    -s "Amazon AWS" \
+    >/dev/null
+  local tmp="${AWS_CREDENTIALS_LIST}.tmp"
+  grep -vw "$name" $AWS_CREDENTIALS_LIST > $tmp
+  mv $tmp $AWS_CREDENTIALS_LIST
+}
+
+aws_keychain_usage() {
+  echo
+  grep "^##.*${1:-}" "${BASH_SOURCE[0]}" | cut -c 4-
+  echo
+  exit 1
+}
+
+main "$@"
