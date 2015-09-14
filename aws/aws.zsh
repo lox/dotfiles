@@ -1,14 +1,35 @@
 
-export AWS_HOME=~/.aws
-export AWS_CONFIG_FILE=~/.aws/config
-export AWS_DEFAULT_REGION=us-east-1
+export AWS_KEYCHAIN="/Users/lachlan/Library/Keychains/Amazon AWS.keychain"
+
+typeset -A aws_vars
+aws_vars[AWS_VPC_ID]=vpc_id
+aws_vars[AWS_DEFAULT_REGION]=region
 
 # helper command for swapping profiles
 function awp {
-  eval `aws-keychain env $1`
-  export AWS_DEFAULT_PROFILE=$1
-  export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
+  if [[ "$1" == "" ]] ; then
+    unset AWS_DEFAULT_PROFILE
+    export RPROMPT=""
+    for key in ${(k)aws_vars} ; do
+      unset $key
+    done
+  else
+    export AWS_DEFAULT_PROFILE=$1
+    export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
+    for key in ${(k)aws_vars} ; do
+      export $key=$(aws configure get ${aws_vars[$key]})
+    done
+  fi
 }
+
+function aws-exec {
+  if [[ -z "$AWS_DEFAULT_PROFILE" ]] ; then
+    echo No profile set, use awp
+    return 1
+  fi
+  aws-vault exec "$AWS_DEFAULT_PROFILE" -- "$@"
+}
+
 
 # aws-cli helpers
 # ----------------------------
