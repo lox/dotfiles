@@ -13,7 +13,7 @@ then
 fi
 
 if ! brew cask &> /dev/null ; then
-  brew install brew-cask	
+  brew install brew-cask
   brew tap caskroom/fonts
   brew tap caskroom/versions
   brew cask install font-inconsolata

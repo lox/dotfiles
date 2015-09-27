@@ -5,31 +5,12 @@ typeset -A aws_vars
 aws_vars[AWS_VPC_ID]=vpc_id
 aws_vars[AWS_DEFAULT_REGION]=region
 
-# helper command for swapping profiles
-function awp {
-  if [[ "$1" == "" ]] ; then
-    unset AWS_DEFAULT_PROFILE
-    export RPROMPT=""
-    for key in ${(k)aws_vars} ; do
-      unset $key
-    done
-  else
-    export AWS_DEFAULT_PROFILE=$1
-    export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
-    for key in ${(k)aws_vars} ; do
-      export $key=$(aws configure get ${aws_vars[$key]})
-    done
-  fi
-}
-
-function aws-exec {
-  if [[ -z "$AWS_DEFAULT_PROFILE" ]] ; then
-    echo No profile set, use awp
-    return 1
-  fi
-  aws-vault exec "$AWS_DEFAULT_PROFILE" -- "$@"
-}
-
+if [[ -n "$AWS_DEFAULT_PROFILE" ]] ; then
+  export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
+  for key in ${(k)aws_vars} ; do
+    export $key=$(aws configure get ${aws_vars[$key]})
+  done
+fi
 
 # aws-cli helpers
 # ----------------------------
