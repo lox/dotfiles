@@ -10,4 +10,5 @@ wget https://sublime.wbond.net/Package%20Control.sublime-package
 
 cd "$SETTINGS_DIR/Packages/"
 [[ -d User ]] && rm -r User
-ln -s ~/Dropbox/Sublime/User
+
+ln -fs "~/Dropbox (Personal)/Sublime/User"

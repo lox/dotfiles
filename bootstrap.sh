@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eux
 #
 # Bootstrap a fresh system
 
@@ -16,4 +16,4 @@ do
   ln -sf $src $dst
 done
 
-./install.sh
+caffeinate -i ./install.sh

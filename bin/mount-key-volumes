@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/bin/bash -eux
 #
 # Loads a key volume from $HOME/Dropbox/Vaults/Keys.dmg
 
-KEY_VOLUME=${KEY_VOLUME:-"$HOME/Dropbox/Vaults/Keys.dmg"}
+KEY_VOLUME=${KEY_VOLUME:-"$HOME/Dropbox (Personal)/Vaults/Keys.dmg"}
 
 if [ ! -f "$KEY_VOLUME" ] ; then
   echo "$KEY_VOLUME doesn't exist"
   exit 1
 fi
 
-volume=`hdiutil attach $KEY_VOLUME | grep Volumes | awk '{print $2}'`
+volume=$(hdiutil attach "$KEY_VOLUME" | grep Volumes | awk '{print $2}')
 
 if [[ -d "$HOME/.ssh" && ! -L "$HOME/.ssh" ]] ; then
   mv $HOME/.ssh $HOME/.ssh-backup
