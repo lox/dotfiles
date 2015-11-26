@@ -7,9 +7,8 @@ function _aws_profiles {
 }
 
 # auto-complete for aws cli
-if [ -f "$(brew --prefix)/opt/awscli/libexec/bin/aws_zsh_completer.sh" ] ; then
-  source $(brew --prefix)/opt/awscli/libexec/bin/aws_zsh_completer.sh
+if [ -f "/usr/local/opt/awscli/libexec/bin/aws_zsh_completer.sh" ] ; then
+  source /usr/local/opt/awscli/libexec/bin/aws_zsh_completer.sh
 fi
 
 compctl -K _aws_profiles awp
-
