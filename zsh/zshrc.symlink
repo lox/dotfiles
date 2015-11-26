@@ -4,6 +4,15 @@
 # shortcut to this dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
+: ${PROFILE_STARTUP="false"}
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 3>&2 2>$HOME/startlog.$$
+    setopt xtrace prompt_subst
+fi
+
 # load plugin bundles
 plugins=(
   zsh-history-substring-search
@@ -48,3 +57,8 @@ unset config_files
 # delegate to defaults
 test ! -e ~/.profile || source ~/.profile
 test ! -e ~/.zprofile || source ~/.zprofile
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  unsetopt xtrace
+  exec 2>&3 3>&-
+fi
