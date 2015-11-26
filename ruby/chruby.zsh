@@ -1,7 +1,9 @@
 
-RUBY_VERSION=${RUBY_VERSION:-2.2.2}
+RUBY_VERSION=${RUBY_VERSION:-2.2.3}
 
-if [[ -d /usr/local/opt/chruby ]]; then
+if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
-  chruby $RUBY_VERSION
+  source /usr/local/opt/chruby/share/chruby/auto.sh
+else
+  echo "Ain't got no chruby"
 fi
