@@ -5,6 +5,7 @@
 # http://ianloic.com/2011/06/25/git-zsh-prompt/
 
 autoload colors && colors
+setopt prompt_subst
 
 git_branch() {
   echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
@@ -43,8 +44,12 @@ need_push () {
   fi
 }
 
+# configure rtab
+autoload -Uz rtab
+zstyle ':prompt:rtab' fish yes
+
 directory_name(){
-  echo "%{$fg_bold[cyan]%}%~/%{$reset_color%}"
+  echo "%{$fg_bold[cyan]%}$(rtab $PWD)%{$reset_color%}"
 }
 
 export PROMPT=$'%(?..%B%F{red}✗ exit %?%f%b\n)\n $(directory_name)$(git_dirty)$(need_push)› '
