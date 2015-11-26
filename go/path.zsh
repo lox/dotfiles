@@ -6,5 +6,5 @@ if [[ -d /usr/local/opt/go ]]; then
   export GOBIN=$GOPATH_HOME/bin
   export GOROOT=/usr/local/opt/go/libexec
   export GO15VENDOREXPERIMENT=1
-  export PATH=/usr/local/opt/go/libexec/bin:$GOPATH_HOME/bin:$GOPATH_WORK/bin:$PATH
+  export PATH=$GOPATH_HOME/bin:$GOPATH_WORK/bin:$PATH
 fi
