@@ -1,0 +1,26 @@
+#!/bin/bash -eu
+
+API_HOST=api.bintray.com
+TARGET="$1"
+FILE="$2"
+
+if [ "$#" -ne 2 ] || [[ $(tr -dc '/' <<< "$TARGET" | awk '{ print length; }') -ne 4 ]] ; then
+  echo "usage: $0 [repo/package/version/filename] <file>"
+  exit 1
+fi
+
+if [[ ! -f ~/.netrc ]] || ! grep -Eq "^\s*machine\s+${API_HOST}\s*$" ~/.netrc ; then
+  echo "Missing ~/.netrc entry for ${API_HOST}. Add the following: "
+  echo
+  echo "machine ${API_HOST}"
+  echo "  login <your bintray username>"
+  echo "  password <your bintray api key>"
+  exit 1
+fi
+
+echo "Uploading $TARGET"
+#curl --fail --netrc --upload-file $FILE "https://${API_HOST}/content/${TARGET}?override=1&publish=1"
+
+# echo "Generating signed url"
+# curl -v --fail --netrc -X POST "https://${API_HOST}/signed_url/${TARGET}?valid_for_secs=6000"
+
