@@ -1,7 +1,7 @@
 [user]
   name = Lachlan Donald
   email = lachlan@ljd.cc
-	signingkey = B5289A75
+  signingkey = B5289A75
 
 [core]
   excludesfile = ~/.gitignore
@@ -40,4 +40,4 @@
   cmd = subl -w $MERGED
   trustExitCode = false
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
