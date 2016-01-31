@@ -1,6 +1,4 @@
 
-source $HOME/.dotfiles/aws/aws-keychain/aws-keychain-completion.zsh
-
 # auto-complete for awp
 function _aws_profiles {
   reply=( $(awk '/^\[/ {print $(NF)}' ~/.aws/config | tr -d '[]') )
