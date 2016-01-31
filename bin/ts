@@ -19,7 +19,7 @@ $args = preg_grep('/^-[ftu]/', array_slice($argv,1), PREG_GREP_INVERT);
 // show help
 if(in_array('-h', $argv) || in_array('--help', $argv))
 {
-    echo "\nusage: $argv[0] [datestring] [-f <format>] [-t timezone] [-u]\n\n";
+    echo "\nusage: $argv[0] [datestring] [modifier] [-f <format>] [-t timezone] [-u]\n\n";
     echo " -f fmt   : a php format string\n";
     echo " -t tz    : a timezone string\n";
     echo " -u       : output a bare timestamp\n\n";
@@ -34,6 +34,11 @@ if(is_numeric($string))
 $tz = new DateTimeZone($options['t']);
 $time = new DateTime($string, $tz);
 $time->setTimezone($tz);
+
+// apply an optional modifier
+if (isset($args[1])) {
+    $time->modify($args[1]);
+}
 
 if(in_array('-u',$argv))
     printf("%d\n", $time->getTimestamp());
