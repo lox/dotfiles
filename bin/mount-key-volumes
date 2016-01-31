@@ -23,3 +23,6 @@ ln -fs $volume/aws $HOME/.aws
 
 echo "Linking $volume/gnupg $HOME/.gnupg"
 ln -fs $volume/gnupg $HOME/.gnupg
+
+echo "Linking $volume/netrc $HOME/.netrc"
+ln -fs $volume/netrc $HOME/.netrc

@@ -1,5 +1,9 @@
 #!/bin/bash
 
 brew install go hg
-go get code.google.com/p/go.tools/cmd/goimports
-go get github.com/tools/godep
+
+
+go get -u golang.org/x/tools/cmd/goimports
+go get -u golang.org/x/tools/cmd/vet
+go get -u golang.org/x/tools/cmd/oracle
+go get -u golang.org/x/tools/cmd/godoc

@@ -4,4 +4,6 @@
 # `origin/$branch-name`.
 
 branch=$(git rev-parse --abbrev-ref HEAD)
-git branch $branch --set-upstream-to origin/$branch
+origin=${1:-origin}
+
+git branch $branch --set-upstream-to $origin/$branch

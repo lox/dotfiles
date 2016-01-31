@@ -3,10 +3,11 @@
 SETTINGS_DIR="$HOME/Library/Application Support/Sublime Text 3"
 
 brew cask install sublime-text-dev
+brew install shellcheck
 
-mkdir -p "$SETTINGS_DIR/Packages/" "$SETTINGS_DIR/Installed Packages/" 
+mkdir -p "$SETTINGS_DIR/Packages/" "$SETTINGS_DIR/Installed Packages/"
 cd "$SETTINGS_DIR/Installed Packages/"
-wget https://sublime.wbond.net/Package%20Control.sublime-package 
+wget https://sublime.wbond.net/Package%20Control.sublime-package
 
 cd "$SETTINGS_DIR/Packages/"
 [[ -d User ]] && rm -r User

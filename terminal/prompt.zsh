@@ -47,6 +47,7 @@ need_push () {
 # configure rtab
 autoload -Uz rtab
 zstyle ':prompt:rtab' fish yes
+zstyle ':prompt:rtab' nameddirs yes
 
 directory_name(){
   echo "%{$fg_bold[cyan]%}$(rtab $PWD)%{$reset_color%}"

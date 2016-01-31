@@ -20,8 +20,8 @@ setopt TRANSIENTRPROMPT # only have the rprompt on the last line
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-#bindkey '^[[A' up-line-or-history
-#bindkey '^[[B' down-line-or-history
+# autoload -U +X compinit && compinit
+# autoload -U +X bashcompinit && bashcompinit
 
 # Use modern completion system
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -40,4 +40,4 @@ zstyle ':completion:*:manuals.*' insert-sections   true
 zstyle ':completion:*:man:*' menu yes select
 
 # Set up a local fpath
-fpath+=( ${0%/*}/functions )
+fpath+=( ${0%/*}/functions ${0%/*}/bundles/zsh-completions/src )
