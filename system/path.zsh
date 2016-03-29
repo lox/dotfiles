@@ -1,3 +1,3 @@
 
-path=("$DOTFILES/bin" $path)
+path=("$DOTFILES/bin" "/usr/local/sbin" $path)
 export PATH
