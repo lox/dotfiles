@@ -1,13 +1,11 @@
-[user]
-  name = Lachlan Donald
-  email = lachlan@ljd.cc
-  signingkey = B5289A75
-
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   editor = /usr/bin/vim
   mergeoptions = --no-ff
+
+[include]
+  path = ~/.gitidentities
 
 [branch]
   autosetupmerge = true
@@ -39,5 +37,8 @@
 [mergetool "sublime"]
   cmd = subl -w $MERGED
   trustExitCode = false
+
 [url "git@github.com:"]
   insteadOf = https://github.com/
+[user]
+	useConfigOnly = true
