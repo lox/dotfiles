@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash -eu
 #
 # Loads a key volume from $HOME/Dropbox/Vaults/Keys.dmg
 
@@ -26,3 +26,6 @@ ln -fs $volume/gnupg $HOME/.gnupg
 
 echo "Linking $volume/netrc $HOME/.netrc"
 ln -fs $volume/netrc $HOME/.netrc
+
+echo "Linking $volume/git/identities $HOME/.gitidentities"
+ln -fs $volume/git/identities $HOME/.gitidentities
