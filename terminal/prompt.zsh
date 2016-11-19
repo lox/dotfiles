@@ -7,6 +7,10 @@
 autoload colors && colors
 setopt prompt_subst
 
+is_git() {
+  [[ -d .git ]] || git rev-parse --is-inside-git-dir &>/dev/null
+}
+
 git_branch() {
   echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
@@ -36,11 +40,18 @@ unpushed () {
 }
 
 need_push () {
-  if [[ -z $(unpushed) ]]
-  then
+  if [[ -z $(unpushed) ]] ; then
     echo " "
   else
     echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+  fi
+}
+
+author() {
+  if ! is_git ; then
+    echo " "
+  else
+    echo "as $(git config user.identity) "
   fi
 }
 
@@ -53,4 +64,4 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}$(rtab $PWD)%{$reset_color%}"
 }
 
-export PROMPT=$'%(?..%B%F{red}✗ exit %?%f%b\n)\n $(directory_name)$(git_dirty)$(need_push)› '
+export PROMPT=$'%(?..%B%F{red}✗ exit %?%f%b\n)\n $(directory_name)$(git_dirty)$(need_push)$(author)› '
