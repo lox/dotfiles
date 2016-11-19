@@ -51,7 +51,11 @@ author() {
   if ! is_git ; then
     echo " "
   else
-    echo "as $(git config user.identity) "
+    if signingkey=$(git config "user.signingkey") ; then
+      echo "as 🔒 $(git config user.identity) "
+    else
+      echo "as $(git config user.identity) "
+    fi
   fi
 }
 

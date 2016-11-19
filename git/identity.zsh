@@ -1,9 +1,9 @@
 
-git_identities() {
+git-identities() {
   git config --get-regexp '^identity\.' | cut -d"." -f2 | sort -u
 }
 
-git_assume() {
+git-assume() {
   local identity="$1"
   local name
   local email
@@ -21,6 +21,11 @@ git_assume() {
   git config user.identity "$identity"
   git config user.name "$name"
   git config user.email "$email"
+
+  if signingkey=$(git config "identity.$identity.signingkey") ; then
+    git config user.signingkey "$signingkey"
+    git config commit.gpgsign true
+  fi
 }
 
 hub_path=$(which hub)

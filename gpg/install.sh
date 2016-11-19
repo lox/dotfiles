@@ -1,4 +1,4 @@
 #!/bin/bash
 
-brew install gnupg gpg-agent
+brew install gnupg gpg-agent pinentry-mac
 
