@@ -2,9 +2,9 @@
 typeset -A NAMED_DIRS
 
 NAMED_DIRS=(
-    work_gopath   ~/Projects/99designs/go
     projects      ~/Projects
-    gopath        ~/.go
+    gopath        $GOPATH_HOME
+    loxgo         ~/Projects/go/src/github.com/lox
 )
 
 for key in ${(k)NAMED_DIRS}
