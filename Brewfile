@@ -14,23 +14,31 @@ brew 'shellcheck'
 brew 'pv'
 brew 'wget'
 brew 'hub'
+brew 'mas'
 
 # gpg
-brew 'gnupg' 
-brew 'gpg-agent' 
+brew 'gpg2'
+brew 'gpg-agent'
 brew 'pinentry-mac'
 
 # casks
 cask 'aws-vault'
 cask 'google-chrome'
 cask 'alfred'
+cask 'dash'
+cask 'fantastical'
+cask 'plex-media-player'
+cask 'docker-beta'
 
 # versions
 cask 'slack-beta'
 cask 'sublime-text-dev'
+cask 'iterm2-beta'
 
 # fonts
 cask 'font-inconsolata'
 cask 'font-source-code-pro'
 
-
+# app store
+mas 'Fantastical 2', id: 975937182
+mas 'Twitter', id: 409789998
