@@ -1,20 +1,18 @@
-#!/bin/bash -eux
+#!/bin/bash
 #
 # Run all dotfiles installers.
-set -e
+set -euo pipefail
 
 cd "$(dirname $0)"
 export DOTFILES=`pwd`
 
-# If we're on a Mac, let's install stuff
-if [ "$(uname -s)" == "Darwin" ] ; then
-  zsh/install.sh
-  homebrew/install.sh
-  osx/install.sh
-  sublime/install.sh
-  terminal/install.sh
-  aws/install.sh
-  go/install.sh
-  ruby/install.sh
-fi
+echo "Installing Bundle"
+ssh-add -A
+brew bundle install
 
+find "$DOTFILES" -name 'install.sh' -mindepth 2 -print0 | while read -d $'\0' file; do 
+  echo "Running $file"
+  $file
+done
+
+echo "Done."

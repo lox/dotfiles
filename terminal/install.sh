@@ -4,9 +4,6 @@
 
 cd "$DOTFILES/terminal"
 
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
 # Use a modified version of the Solarized Dark theme by default in Terminal.app
 osascript <<EOD
 tell application "Terminal"

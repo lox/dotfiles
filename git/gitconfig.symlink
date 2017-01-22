@@ -43,3 +43,5 @@
 
 [user]
   useConfigOnly = true
+[gpg]
+	program = gpg2

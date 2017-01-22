@@ -2,7 +2,7 @@
 #
 # Loads a key volume from $HOME/Dropbox/Vaults/Keys.dmg
 
-KEY_VOLUME=${KEY_VOLUME:-"$HOME/Dropbox (Personal)/Vaults/Keys.dmg"}
+KEY_VOLUME=${KEY_VOLUME:-"$HOME/Library/Mobile Documents/com~apple~CloudDocs/Keys.dmg"}
 
 if [ ! -f "$KEY_VOLUME" ] ; then
   echo "$KEY_VOLUME doesn't exist"
