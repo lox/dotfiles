@@ -15,6 +15,7 @@ brew 'pv'
 brew 'wget'
 brew 'hub'
 brew 'mas'
+brew 'ag'
 
 # gpg
 brew 'gpg2'
@@ -29,6 +30,8 @@ cask 'dash'
 cask 'fantastical'
 cask 'plex-media-player'
 cask 'docker-beta'
+cask 'dropbox'
+cask '1password'
 
 # versions
 cask 'slack-beta'

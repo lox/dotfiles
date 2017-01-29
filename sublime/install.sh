@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
 if [[ ! -d ~/Dropbox/Sublime/User ]] ; then
-  echo Failed to find ~/Dropbox/Sublime/User
+  echo "Failed to find ~/Dropbox/Sublime/User, sync it, then re-run"
   exit 1
 fi
 
