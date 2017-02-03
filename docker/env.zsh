@@ -16,3 +16,5 @@ dm_env_unset() {
   eval $(docker-machine env --unset)
   unset RPROMPT
 }
+
+alias dc=docker-compose

@@ -16,6 +16,7 @@ brew 'wget'
 brew 'hub'
 brew 'mas'
 brew 'ag'
+brew 'npm'
 
 # gpg
 brew 'gpg2'
@@ -32,6 +33,8 @@ cask 'plex-media-player'
 cask 'docker-beta'
 cask 'dropbox'
 cask '1password'
+cask 'telegram'
+cask 'whatsapp'
 
 # versions
 cask 'slack-beta'
