@@ -29,3 +29,8 @@ ln -fs $volume/netrc $HOME/.netrc
 
 echo "Linking $volume/git/identities $HOME/.gitidentities"
 ln -fs $volume/git/identities $HOME/.gitidentities
+
+echo "Linking $volume/docker/config.json $HOME/.docker/config.json"
+mkdir -p $HOME/.docker
+ln -fs $volume/docker/config.json $HOME/.docker/config.json
+
