@@ -6,17 +6,24 @@ tap 'caskroom/versions'
 brew 'coreutils'
 brew 'zsh'
 brew 'fasd'
-brew 'ruby-install'
-brew 'chruby'
-brew 'go', args: ['devel']
+brew 'mas'
+
 brew 'awscli'
-brew 'shellcheck'
 brew 'pv'
 brew 'wget'
 brew 'hub'
-brew 'mas'
 brew 'ag'
+brew 'shellcheck'
+
+# nodejs
 brew 'npm'
+
+# golang
+brew 'go', args: ['devel']
+
+# fucking ruby
+brew 'ruby-install'
+brew 'rbenv'
 
 # gpg
 brew 'gpg2'
