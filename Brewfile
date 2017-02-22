@@ -14,6 +14,7 @@ brew 'wget'
 brew 'hub'
 brew 'ag'
 brew 'shellcheck'
+brew 'fswatch'
 
 # nodejs
 brew 'npm'
@@ -55,3 +56,4 @@ cask 'font-source-code-pro'
 # app store
 mas 'Fantastical 2', id: 975937182
 mas 'Twitter', id: 409789998
+mas 'Captured', id: 414675451

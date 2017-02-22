@@ -1,9 +1,7 @@
 
-RUBY_VERSION=${RUBY_VERSION:-2.2.3}
+export PATH="$HOME/.rbenv/bin:$PATH"
 
-if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
-  source /usr/local/opt/chruby/share/chruby/chruby.sh
-  source /usr/local/opt/chruby/share/chruby/auto.sh
-else
-  echo "Ain't got no chruby"
-fi
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
