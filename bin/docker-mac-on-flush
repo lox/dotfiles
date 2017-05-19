@@ -1,0 +1,33 @@
+#!/bin/bash
+set -eu
+
+# os: use fsync to flush the buffers to the OS
+# drive: use fcntl to flush the buffers to the drive
+# none: do nothing on a flush
+
+read_hyperkit_setting() {
+  local setting="$1"
+  pgrep -lf com.docker.hyperkit | grep -oE "${setting}=[^&]+"
+}
+
+if [[ -z "${1:-}" || "${1:-}" == "--print" ]] ; then
+  read_hyperkit_setting "sync"
+  exit
+fi
+
+setting="${1:-drive}"
+
+if [[ ! $setting =~ (drive|os|none) ]] ; then
+  echo "Must provide either drive, os or none"
+  exit 1
+fi
+
+cd ~/Library/Containers/com.docker.docker/Data/database
+git config user.email "you@example.com"
+git config user.name "Your Name"
+git reset --hard
+
+echo "Setting disk/on-flush to ${setting}"
+echo -n "$setting" > ./com.docker.driver.amd64-linux/disk/on-flush
+git add ./com.docker.driver.amd64-linux/disk/on-flush
+git commit -s -m "Change disk/on-flush to ${setting}"
