@@ -1,7 +1,8 @@
-
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
+eval "$(command rbenv init -)"
+
+command -v bundle &>/dev/null || {
+  gem install bundler
+  rbenv rehash
 }
