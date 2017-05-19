@@ -1,11 +1,16 @@
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   editor = /usr/bin/vim
   mergeoptions = --no-ff
+  ignorecase = false
 
 [include]
   path = ~/.gitidentities
+
+
+[fetch]
+  prune = true
 
 [branch]
   autosetupmerge = true
