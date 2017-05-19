@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
+tap 'kaos/shell'
 
 brew 'coreutils'
 brew 'zsh'
@@ -13,8 +14,12 @@ brew 'pv'
 brew 'wget'
 brew 'hub'
 brew 'ag'
-brew 'shellcheck'
 brew 'fswatch'
+
+# bash
+brew 'shellcheck'
+brew 'bats-assert'
+brew 'bats-file'
 
 # nodejs
 brew 'npm'
@@ -25,6 +30,7 @@ brew 'go', args: ['devel']
 # fucking ruby
 brew 'ruby-install'
 brew 'rbenv'
+brew 'rbenv-bundler'
 
 # gpg
 brew 'gpg2'
@@ -54,6 +60,6 @@ cask 'font-inconsolata'
 cask 'font-source-code-pro'
 
 # app store
-mas 'Fantastical 2', id: 975937182
-mas 'Twitter', id: 409789998
+# mas 'Fantastical 2', id: 975937182
+# mas 'Twitter', id: 409789998
 mas 'Captured', id: 414675451
