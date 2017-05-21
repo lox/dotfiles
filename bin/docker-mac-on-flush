@@ -7,6 +7,8 @@ set -eu
 ## Without any arguments, will print the current setting
 ## Changes cause a restart of the docker daemon, takes a while
 
+# See https://github.com/docker/for-mac/issues/668 for more backstory
+
 # os: use fsync to flush the buffers to the OS
 # drive: use fcntl to flush the buffers to the drive
 # none: do nothing on a flush
