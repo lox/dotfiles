@@ -1,6 +1,12 @@
 #!/bin/bash
 set -eu
 
+## Modify the disk flushing settings for Docker for Mac
+## usage: docker-mac-on-flush (os|drive|none)
+
+## Without any arguments, will print the current setting
+## Changes cause a restart of the docker daemon, takes a while
+
 # os: use fsync to flush the buffers to the OS
 # drive: use fcntl to flush the buffers to the drive
 # none: do nothing on a flush
