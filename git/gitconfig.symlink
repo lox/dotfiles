@@ -1,13 +1,14 @@
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   editor = /usr/bin/vim
-  mergeoptions = --no-ff
   ignorecase = false
 
 [include]
   path = ~/.gitidentities
 
+[pull]
+  rebase = preserve
 
 [fetch]
   prune = true
@@ -30,18 +31,14 @@
   whitespace = red reverse
 
 [merge]
+  ff = only
   log = true
-  tool = sublime
 
 [credential]
   helper = osxkeychain
 
 [push]
   default = current
-
-[mergetool "sublime"]
-  cmd = subl -w $MERGED
-  trustExitCode = false
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
@@ -53,5 +50,5 @@
   program = gpg2
 
 [alias]
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  tidy = rebase -i @{upstream}..
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
