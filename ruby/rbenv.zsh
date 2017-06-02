@@ -1,4 +1,3 @@
-export PATH="$HOME/.rbenv/bin:$PATH"
 
 eval "$(command rbenv init -)"
 
