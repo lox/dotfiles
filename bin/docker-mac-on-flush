@@ -20,7 +20,7 @@ read_hyperkit_setting() {
 
 if [[ -z "${1:-}" || "${1:-}" == "--print" ]] ; then
   read_hyperkit_setting "sync"
-  exit
+  exit 0
 fi
 
 setting="${1:-drive}"
@@ -36,6 +36,10 @@ git config user.name "Your Name"
 git reset --hard
 
 echo "Setting disk/on-flush to ${setting}"
+mkdir -p com.docker.driver.amd64-linux/disk/
 echo -n "$setting" > ./com.docker.driver.amd64-linux/disk/on-flush
 git add ./com.docker.driver.amd64-linux/disk/on-flush
 git commit -s -m "Change disk/on-flush to ${setting}"
+
+echo "Restarting docker, changes can take 10-15 seconds to apply"
+pkill com.docker.hyperkit
