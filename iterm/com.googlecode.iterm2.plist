@@ -380,12 +380,17 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>477 166 786 297 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>134 117 918 381 0 0 1440 878 </string>
+	<string>366 214 918 381 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>669 409 570 375 0 0 1440 878 </string>
+	<string>296 219 1053 596 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_21048CBB-8F4B-4492-A49A-8DCDADDF9248</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -547,10 +552,14 @@
 			<true/>
 			<key>Background Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.15170273184776306</real>
+				<real>0.0</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.11783610284328461</real>
+				<real>0.0</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -1305,5 +1314,9 @@
 	<false/>
 	<key>iTerm Version</key>
 	<string>3.1.beta.5</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>
