@@ -52,6 +52,7 @@ cask 'iterm2-beta'
 # fonts
 cask 'font-inconsolata'
 cask 'font-source-code-pro'
+cask 'font-roboto-mono-for-powerline'
 
 # app store
 mas 'Captured', id: 414675451
