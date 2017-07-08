@@ -30,6 +30,9 @@ brew 'go', args: ['devel']
 
 # ruby
 brew 'ruby-install'
+brew 'openssl'
+brew 'libyaml'
+brew 'libffi'
 
 # gpg
 brew 'gpg2'
