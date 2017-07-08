@@ -10,15 +10,15 @@ fi
 
 # install homebrew
 if ! command -v brew ; then
-  echo "› Installing Homebrew"
+  echo -e "\\n› Installing Homebrew"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 cd $HOME/.dotfiles
 
 # find .symlink files and symlink them to home
+echo -e "\\n› Creating symlinks"
 for src in $(find `pwd` -name '*.symlink') ; do
-  echo "› Linking ${dst}..."
   ln -sfv $src "$HOME/.$(basename "${src%.*}")"
 done
 
