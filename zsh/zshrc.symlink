@@ -10,21 +10,20 @@ config_files=($DOTFILES/*/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh} ; do 
-  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
 export PATH
+
+source ~/.
 
 # load antibody plugins
 source ~/.zsh_plugins.sh
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh} ; do
-  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
-
 
 autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
@@ -36,7 +35,6 @@ fi
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh} ; do
-  [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
