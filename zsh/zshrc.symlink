@@ -18,6 +18,7 @@ export PATH
 source ~/.
 
 # load antibody plugins
+source $DOTFILES/zsh/prompt.zsh
 source ~/.zsh_plugins.sh
 
 # load everything but the path and completion files
