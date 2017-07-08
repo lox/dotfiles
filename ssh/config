@@ -1,0 +1,9 @@
+Host *
+ServerAliveInterval 10
+ServerAliveCountMax 4
+AddKeysToAgent yes
+UseKeychain yes
+IdentitiesOnly yes
+ForwardAgent no
+
+Include ~/.ssh/config.private
