@@ -4,52 +4,38 @@
 # shortcut to this dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
-: ${PROFILE_STARTUP="false"}
-
-if [[ "$PROFILE_STARTUP" == true ]]; then
-    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-    PS4=$'%D{%M%S%.} %N:%i> '
-    exec 3>&2 2>$HOME/startlog.$$
-    setopt xtrace prompt_subst
-fi
-
-# load plugin bundles
-plugins=(
-  zsh-history-substring-search
-  zsh-syntax-highlighting
-)
-
-for p in ${plugins[@]} ; do
-  source $DOTFILES/zsh/bundles/${p}/${p}.zsh
-done
-
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
+for file in ${(M)config_files:#*/path.zsh} ; do 
   [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
 export PATH
 
+# load antibody plugins
+source ~/.zsh_plugins.sh
+
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh} ; do
   [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
+for file in ${(M)config_files:#*/completion.zsh} ; do
   [ -n "$BENCH" ] && time ( echo "loading $file"; source $file )
   source $file
 done
