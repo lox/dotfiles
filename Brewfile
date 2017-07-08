@@ -55,3 +55,4 @@ cask 'font-source-code-pro'
 
 # app store
 mas 'Captured', id: 414675451
+mas 'Irvue', id: 1039633667
