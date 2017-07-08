@@ -6,7 +6,6 @@ tap 'kaos/shell'
 
 brew 'coreutils'
 brew 'zsh'
-brew 'fasd'
 brew 'mas'
 
 brew 'awscli'
@@ -27,10 +26,8 @@ brew 'npm'
 # golang
 brew 'go', args: ['devel']
 
-# fucking ruby
+# ruby
 brew 'ruby-install'
-brew 'rbenv'
-brew 'rbenv-bundler'
 
 # gpg
 brew 'gpg2'
@@ -42,17 +39,9 @@ cask 'aws-vault'
 cask 'google-chrome'
 cask 'alfred'
 cask 'dash'
-cask 'fantastical'
 cask 'plex-media-player'
-cask 'docker-beta'
-cask 'dropbox'
-cask '1password'
-cask 'telegram'
-cask 'whatsapp'
 
 # versions
-cask 'slack-beta'
-cask 'sublime-text-dev'
 cask 'iterm2-beta'
 
 # fonts
@@ -60,6 +49,4 @@ cask 'font-inconsolata'
 cask 'font-source-code-pro'
 
 # app store
-# mas 'Fantastical 2', id: 975937182
-# mas 'Twitter', id: 409789998
 mas 'Captured', id: 414675451
