@@ -3,10 +3,12 @@ tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'kaos/shell'
+tap 'getantibody/tap'
 
 brew 'coreutils'
 brew 'zsh'
 brew 'mas'
+brew 'antibody'
 
 brew 'awscli'
 brew 'pv'
