@@ -1,0 +1,27 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AutoFileName",
+		"Dockerfile Syntax Highlighting",
+		"EditorConfig",
+		"Git",
+		"GitGutter",
+		"GoGuru",
+		"GoRename",
+		"GoSublime",
+		"Makefile Plus",
+		"Markdown Extended",
+		"Package Control",
+		"Pretty JSON",
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-shellcheck",
+		"Theme - Spacegray",
+		"Vintageous"
+	]
+}
