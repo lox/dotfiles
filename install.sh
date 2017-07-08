@@ -4,7 +4,9 @@
 set -euo pipefail
 
 cd "$(dirname $0)"
-export DOTFILES=`pwd`
+
+export DOTFILES=$(pwd)
+export ICLOUD_CONFIG=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Config
 
 echo -e "\\n> Installing Bundle"
 brew bundle install
