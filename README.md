@@ -23,4 +23,4 @@ There's a few special files in the hierarchy.
 
 
 ## Thanks to…
-  - (Caarlos0's dotfiles)[https://github.com/caarlos0/dotfiles]
+  - [Caarlos0's dotfiles](https://github.com/caarlos0/dotfiles)
