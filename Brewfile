@@ -42,9 +42,9 @@ brew 'pinentry-mac'
 # casks
 cask 'aws-vault'
 cask 'google-chrome'
-cask 'alfred'
 cask 'dash'
 cask 'plex-media-player'
+cask 'spectacles'
 
 # versions
 cask 'iterm2-beta'
