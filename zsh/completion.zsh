@@ -14,3 +14,6 @@ zstyle ':completion:*' rehash true
 
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
+
+# ignore _underscore functions in completion
+zstyle ':completion:*' ignored-patterns '_*'
