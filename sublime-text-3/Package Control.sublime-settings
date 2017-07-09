@@ -2,14 +2,13 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"0_package_control_loader"
 	],
 	"installed_packages":
 	[
 		"AutoFileName",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
-		"Git",
-		"GitGutter",
 		"GoGuru",
 		"GoRename",
 		"GoSublime",
