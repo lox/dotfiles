@@ -129,11 +129,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>531 485 786 163 0 0 1440 878 </string>
+	<string>726 519 786 94 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>277 238 918 452 0 0 1440 878 </string>
+	<string>380 282 918 507 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>682 262 650 525 0 0 1440 878 </string>
+	<string>2 4 929 1024 0 0 1680 1028 </string>
 	<key>NeverWarnAboutShortLivedSessions_21048CBB-8F4B-4492-A49A-8DCDADDF9248</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -735,7 +735,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>RobotoMonoForPowerline-Regular 14</string>
+			<string>RobotoMonoForPowerline-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -907,7 +907,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/lachlanabecker</string>
+			<string>/Users/lachlan</string>
 		</dict>
 	</array>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
