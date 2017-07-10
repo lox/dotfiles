@@ -4,6 +4,7 @@ tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'kaos/shell'
 tap 'getantibody/tap'
+tap 'homebrew/homebrew-php'
 
 brew 'coreutils'
 brew 'zsh'
@@ -34,6 +35,11 @@ brew 'openssl'
 brew 'libyaml'
 brew 'libffi'
 
+# php
+brew 'php-version'
+brew 'php55'
+brew 'composer'
+
 # gpg
 brew 'gpg2'
 brew 'gpg-agent'
@@ -44,7 +50,7 @@ cask 'aws-vault'
 cask 'google-chrome'
 cask 'dash'
 cask 'plex-media-player'
-cask 'spectacles'
+cask 'spectacle'
 
 # versions
 cask 'iterm2-beta'
