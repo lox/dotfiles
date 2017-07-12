@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export GEOMETRY_PROMPT_PLUGINS=(exec_time git git_identity)
+export GEOMETRY_PROMPT_PLUGINS=(exec_time docker_compose git git_identity)
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export PROMPT_GEOMETRY_GIT_TIME=false
 
