@@ -12,16 +12,16 @@ eval "$(rbenv init -)"
 
 cat << EOF > "$RBENV_ROOT/default-gems"
 bundler
+rake
 EOF
 
 plugins=(
-  https://github.com/garnieretienne/rvm-download.git    
-  https://github.com/sstephenson/ruby-build.git         
-  https://github.com/sstephenson/rbenv-default-gems.git 
-  https://github.com/rkh/rbenv-whatis.git               
-  https://github.com/rkh/rbenv-use.git                  
-  https://github.com/tpope/rbenv-communal-gems.git      
-  https://github.com/nicknovitski/rbenv-gem-update      
+  https://github.com/sstephenson/ruby-build.git
+  https://github.com/sstephenson/rbenv-default-gems.git
+  https://github.com/rkh/rbenv-whatis.git
+  https://github.com/rkh/rbenv-use.git
+  https://github.com/tpope/rbenv-communal-gems.git
+  https://github.com/nicknovitski/rbenv-gem-update
 )
 
 mkdir -p "$RBENV_PLUGINS"
@@ -35,7 +35,7 @@ for plugin in "${plugins[@]}" ; do
   }
 done
 
-if ! rbenv versions | grep -qv "${RBENV_VERSION}" ; then
+if ! rbenv versions | grep -q "${RBENV_VERSION}" ; then
   rbenv install ${RBENV_VERSION}
 fi
 
