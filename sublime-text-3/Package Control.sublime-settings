@@ -2,11 +2,10 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"0_package_control_loader"
 	],
 	"installed_packages":
 	[
-		"AutoFileName",
+		"Bats (Bash Automated Testing System)",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
 		"GoGuru",
@@ -17,9 +16,11 @@
 		"Markdown Extended",
 		"Package Control",
 		"Pretty JSON",
+		"ProjectManager",
 		"Sass",
 		"SideBarEnhancements",
 		"SublimeLinter",
+		"SublimeLinter-phpcs",
 		"SublimeLinter-shellcheck",
 		"Theme - Spacegray",
 		"Vintageous"

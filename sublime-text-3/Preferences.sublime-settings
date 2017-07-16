@@ -1,6 +1,7 @@
 {
 	"bold_folder_labels": true,
 	"caret_style": "phase",
+	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/base16-eighties.dark (SL).tmTheme",
 	"default_line_ending": "unix",
 	"enable_tab_scrolling": false,
@@ -24,7 +25,6 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"0_package_control_loader",
 		"Makefile",
 		"Vintage"
 	],
@@ -40,5 +40,5 @@
 	"tab_size": 2,
 	"theme": "Spacegray Eighties.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
-	"word_wrap": false
+	"word_wrap": true
 }
