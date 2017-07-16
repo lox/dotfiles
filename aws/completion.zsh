@@ -1,9 +1,16 @@
+#!/bin/sh
 
-# auto-complete for aws cli
-if [ -f "/usr/local/opt/awscli/libexec/bin/aws_zsh_completer.sh" ] ; then
-  source /usr/local/opt/awscli/libexec/bin/aws_zsh_completer.sh
-fi
+__aws_completion_started=0
 
-# if (( $+commands[aws-vault] )) ; then
-#   eval "$(aws-vault --completion-script-zsh)"
-# fi
+__aws_completion_init() {
+  test $__aws_completion_started = 0 && {
+    source /usr/local/opt/awscli/libexec/bin/aws_zsh_completer.sh
+    __aws_completion_started=1
+  }
+}
+
+aws() {
+  __aws_completion_init
+  command aws "$@"
+}
+
