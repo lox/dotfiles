@@ -1,5 +1,10 @@
 {
-  "psFormat": "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}} ago\\t{{.Status}}\\t{{.Command}}",
-  "imagesFormat": "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}",
-  "credsStore": "osxkeychain"
+  "auths" : {
+    "https://523351685636.dkr.ecr.ap-southeast-2.amazonaws.com" : {
+
+    }
+  },
+  "imagesFormat" : "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}",
+  "credsStore" : "osxkeychain",
+  "psFormat" : "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}} ago\\t{{.Status}}\\t{{.Command}}"
 }
