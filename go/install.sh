@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$(which go)" ] && [ -n "$GOPATH" ]; then
+[ "$(which gometalinter)" ] || {
     mkdir -p "$GOPATH/bin" "$GOPATH/src/github.com/"
 
     packages=(
@@ -14,11 +14,10 @@ if [ "$(which go)" ] && [ -n "$GOPATH" ]; then
         github.com/golang/lint/golint
     )
 
-    for pkg in $packages; do
+    for pkg in ${packages[@]}; do
         echo "> Installing $pkg"
         go get -u "$pkg"
     done
 
     "$GOPATH"/bin/gometalinter --install --update
-fi
-
+}
