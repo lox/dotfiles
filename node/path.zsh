@@ -1,6 +1,10 @@
 
 if command -v yarn &> /dev/null ; then
-  path+=("$HOME/.yarn/bin")
+  export PATH="$PATH:$HOME/.yarn/bin"
 fi
 
-path+=("node_modules/.bin")
+if command -v npm &> /dev/null ; then
+  export PATH="$PATH:$HOME/.npm/bin"
+fi
+
+export PATH="$PATH:node_modules/.bin"
