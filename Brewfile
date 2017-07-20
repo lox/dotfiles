@@ -1,4 +1,5 @@
 cask_args appdir: '/Applications'
+
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
@@ -10,6 +11,7 @@ brew 'coreutils'
 brew 'zsh'
 brew 'mas'
 brew 'antibody'
+brew 'fasd'
 
 brew 'awscli'
 brew 'pv'

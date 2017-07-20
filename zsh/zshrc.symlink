@@ -9,7 +9,7 @@ typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh} ; do 
+for file in ${(M)config_files:#*/path.zsh} ; do
   source $file
 done
 
