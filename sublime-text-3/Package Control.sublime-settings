@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Babel",
 		"Bats (Bash Automated Testing System)",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
