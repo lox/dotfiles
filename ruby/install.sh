@@ -35,9 +35,8 @@ for plugin in "${plugins[@]}" ; do
   }
 done
 
-if ! rbenv versions | grep -q "${RBENV_VERSION}" ; then
+if [[ ! -d "${RBENV_ROOT}/versions/${RBENV_VERSION}" ]] ; then
   rbenv install ${RBENV_VERSION}
+  rbenv use ${RBENV_VERSION} --global
+  rbenv communize --all
 fi
-
-rbenv use ${RBENV_VERSION} --global
-rbenv communize --all

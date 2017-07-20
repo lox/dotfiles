@@ -25,6 +25,11 @@ rake() {
   command rake "$@"
 }
 
+rails() {
+  __rbenv_init
+  command rails "$@"
+}
+
 bundle() {
   __rbenv_init
   command bundle "$@"

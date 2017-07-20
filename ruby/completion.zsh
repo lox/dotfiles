@@ -1,6 +1,4 @@
-#!/bin/env zsh
-
-alias rake='noglob rake'
+!/bin/env zsh
 
 _rake_does_task_list_need_generating () {
   if [ ! -f .rake_tasks ]; then return 0;
