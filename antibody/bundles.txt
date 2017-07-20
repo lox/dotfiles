@@ -1,5 +1,4 @@
 # this block is in alphabetic order
-rupa/z
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
