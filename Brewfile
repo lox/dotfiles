@@ -41,6 +41,7 @@ brew 'libffi'
 brew 'php-version'
 brew 'php55'
 brew 'composer'
+brew 'php-code-sniffer'
 
 # gpg
 brew 'gpg2'
@@ -53,6 +54,7 @@ cask 'google-chrome'
 cask 'dash'
 cask 'plex-media-player'
 cask 'spectacle'
+cask 'alfred'
 
 # versions
 cask 'iterm2-beta'
