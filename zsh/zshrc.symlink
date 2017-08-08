@@ -8,11 +8,15 @@ export DOTFILES=$HOME/.dotfiles
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
 
+# zsh has path magic
+path=(/usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
+
 # load the path files
 for file in ${(M)config_files:#*/path.zsh} ; do
   source $file
 done
 
+path=("$DOTFILES/bin" $path)
 export PATH
 
 # load antibody plugins
