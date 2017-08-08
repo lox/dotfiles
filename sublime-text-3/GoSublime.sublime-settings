@@ -1,14 +1,14 @@
 {
     "env": {
-      "GOPATH": "$HOME/go",
-      "PATH": "HOME/go/bin:$PATH:/usr/bin"
+        "GOPATH": "$HOME/go",
+        "PATH": "$HOME/go/bin:$PATH",
     },
     "autocomplete_suggest_imports": true,
     "comp_lint_enabled": true,
     "fmt_cmd": ["gofmt", "-s"],
     "on_save": [
         {"cmd": "gs_comp_lint"},
-        {"cmd": "go install"},
+        {"cmd": "go install -a"},
     ],
     "comp_lint_commands": [
         {"cmd": ["goimports -w $_fn"] , "shell": true},

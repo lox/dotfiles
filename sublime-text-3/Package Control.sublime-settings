@@ -8,22 +8,26 @@
 		"Babel",
 		"Bats (Bash Automated Testing System)",
 		"Dockerfile Syntax Highlighting",
-		"EditorConfig",
-		"GoGuru",
+		"GitOpenChangedFiles",
 		"GoRename",
 		"GoSublime",
+		"jsfmt",
 		"Make File Executable",
 		"Makefile Plus",
 		"Markdown Extended",
 		"Package Control",
+		"PowerShell",
 		"Pretty JSON",
 		"ProjectManager",
 		"Sass",
-		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-phpcs",
 		"SublimeLinter-shellcheck",
 		"Theme - Spacegray",
 		"Vintageous"
+	],
+	"repositories":
+	[
+		"https://github.com/frou/GoFeather"
 	]
 }

@@ -4,8 +4,11 @@
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/base16-eighties.dark (SL).tmTheme",
 	"default_line_ending": "unix",
+	"draw_white_space": "all",
+	"translate_tabs_to_spaces": false,
+	"detect_indentation": true,
 	"enable_tab_scrolling": false,
-	"ensure_newline_at_eof_on_save": true,
+	"ensure_newline_at_eof_on_save": false,
 	"file_exclude_patterns":
 	[
 		".project",
@@ -39,6 +42,6 @@
 	"spacegray_tabs_auto_width": true,
 	"tab_size": 2,
 	"theme": "Spacegray Eighties.sublime-theme",
-	"trim_trailing_white_space_on_save": true,
+	"trim_trailing_white_space_on_save": false,
 	"word_wrap": true
 }
