@@ -80,13 +80,6 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf702-0x280000</key>
-		<dict>
-			<key>Action</key>
-			<integer>10</integer>
-			<key>Text</key>
-			<string>F</string>
-		</dict>
 		<key>0xf702-0x300000</key>
 		<dict>
 			<key>Action</key>
@@ -100,13 +93,6 @@
 			<integer>33</integer>
 			<key>Text</key>
 			<string></string>
-		</dict>
-		<key>0xf703-0x280000</key>
-		<dict>
-			<key>Action</key>
-			<integer>10</integer>
-			<key>Text</key>
-			<string>B</string>
 		</dict>
 		<key>0xf703-0x300000</key>
 		<dict>
@@ -246,9 +232,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>726 519 786 94 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>380 322 958 433 0 0 1680 1028 </string>
+	<string>380 282 1016 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>262 157 1298 747 0 0 1680 1028 </string>
+	<string>0 97 1333 781 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_21048CBB-8F4B-4492-A49A-8DCDADDF9248</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -679,9 +665,9 @@
 				<key>0xf702-0x280000</key>
 				<dict>
 					<key>Action</key>
-					<integer>11</integer>
+					<integer>10</integer>
 					<key>Text</key>
-					<string>0x1b 0x1b 0x5b 0x44</string>
+					<string>b</string>
 				</dict>
 				<key>0xf703-0x220000</key>
 				<dict>
@@ -707,9 +693,9 @@
 				<key>0xf703-0x280000</key>
 				<dict>
 					<key>Action</key>
-					<integer>11</integer>
+					<integer>10</integer>
 					<key>Text</key>
-					<string>0x1b 0x1b 0x5b 0x43</string>
+					<string>f</string>
 				</dict>
 				<key>0xf704-0x20000</key>
 				<dict>
@@ -852,7 +838,7 @@
 			<key>Normal Font</key>
 			<string>RobotoMonoForPowerline-Regular 12</string>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<integer>0</integer>
 			<key>Right Option Key Sends</key>
@@ -1109,7 +1095,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-13T03:19:32Z</date>
+	<date>2017-07-20T14:05:32Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
