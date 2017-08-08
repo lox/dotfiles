@@ -4,6 +4,9 @@
 # fi
 
 export AWS_VAULT_PROMPT=osascript
+export AWS_VAULT_BIOMETRICS=true
+
+alias aws-vault-dev=$HOME/go/bin/aws-vault
 
 ecr-login() {
   local profile="${1:-}"
