@@ -28,15 +28,21 @@ git-assume() {
   fi
 }
 
-hub_path=$(which hub)
-if (( $+commands[hub] )) ; then
-  hub() {
-    local identity
-    local token
+github_token_command() {
+  local identity
+  local token
 
-    identity=$(git config "user.identity")
-    token=$(git config "identity.${identity}.githubtoken")
+  identity=$(git config "user.identity")
+  token=$(git config "identity.${identity}.githubtoken")
 
-    GITHUB_TOKEN=$token command hub "$@"
-  }
-fi
+  export GITHUB_TOKEN=$token
+  command "$@"
+}
+
+hub() {
+  github_token_command command hub "$@"
+}
+
+goreleaser() {
+  github_token_command command goreleaser "$@"
+}
