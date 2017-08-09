@@ -12,6 +12,7 @@ brew 'zsh'
 brew 'mas'
 brew 'antibody'
 brew 'fasd'
+brew 'direnv'
 
 brew 'awscli'
 brew 'pv'
@@ -36,6 +37,7 @@ brew 'ruby-install'
 brew 'openssl'
 brew 'libyaml'
 brew 'libffi'
+brew 'chruby'
 
 # php
 brew 'php-version'
