@@ -1,3 +1,5 @@
 .DS_Store
 .env
 .rake_tasks
+.envrc
+.vscode/
