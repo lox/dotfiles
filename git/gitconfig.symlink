@@ -50,7 +50,7 @@
   useConfigOnly = true
 
 [gpg]
-  program = gpg2
+  program = gpg
 
 [alias]
   tidy = rebase -i @{upstream}..
@@ -58,6 +58,7 @@
   subu = submodule update --init --recursive
   fff = !git fetch && git ff
   pushf = push --force-with-lease
+  recent = branch --sort=-committerdate
 
 [rerere]
   enabled = 1
