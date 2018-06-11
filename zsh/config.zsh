@@ -38,10 +38,14 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
+bindkey '\e[A' history-substring-search-up
+bindkey '\e[B' history-substring-search-down
+
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
+
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey '^[[5D' beginning-of-line

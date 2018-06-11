@@ -1,6 +1,4 @@
-#!/bin/sh
 
-export GEOMETRY_PROMPT_PLUGINS=(exec_time docker_compose git git_identity)
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export PROMPT_GEOMETRY_GIT_TIME=false
 
@@ -13,4 +11,3 @@ export GEOMETRY_COLOR_EXIT_VALUE="red"             # prompt symbol color when ex
 export GEOMETRY_COLOR_PROMPT="white"               # prompt symbol color
 export GEOMETRY_COLOR_ROOT="green"                 # root prompt symbol color
 export GEOMETRY_COLOR_DIR="blue"                   # current directory color
-
