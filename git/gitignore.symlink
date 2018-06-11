@@ -3,3 +3,4 @@
 .rake_tasks
 .envrc
 .vscode/
+.vagrant/
