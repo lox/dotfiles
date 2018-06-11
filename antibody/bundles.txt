@@ -1,8 +1,8 @@
 # this block is in alphabetic order
 zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
+#zsh-users/zsh-autosuggestions
 
 # these should be at last!
-frmendes/geometry
+frmendes/geometry branch=v1.0.0
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
