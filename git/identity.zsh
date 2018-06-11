@@ -46,3 +46,7 @@ hub() {
 goreleaser() {
   github_token_command command goreleaser "$@"
 }
+
+vgo() {
+  github_token_command command vgo "$@"
+}
