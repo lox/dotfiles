@@ -1,5 +1,10 @@
 #!/bin/sh
 
+test -d ~/.ssh || {
+	mkdir ~/.ssh
+	ssh-keygen -t rsa -b 4096 
+}
+
 test -L ~/.ssh/config || {
 	ln -fsv "$DOTFILES"/ssh/config ~/.ssh/config
 }

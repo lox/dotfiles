@@ -1,4 +1,4 @@
-# git_identity.zsh
+# git_identity
 # A geometry plugin for showing a locks symbol if there is a signing key for a repository
 
 GEOMETRY_GIT_IDENTITY_UNSIGNED_SYMBOL=${GEOMETRY_GIT_IDENTITY_UNSIGNED_SYMBOL:-"*"}

@@ -5,7 +5,6 @@ tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'kaos/shell'
 tap 'getantibody/tap'
-tap 'homebrew/homebrew-php'
 
 brew 'coreutils'
 brew 'zsh'
@@ -30,7 +29,7 @@ brew 'bats-file'
 brew 'npm'
 
 # golang
-brew 'go', args: ['devel']
+brew 'go'
 
 # ruby
 brew 'ruby-install'
@@ -38,12 +37,6 @@ brew 'openssl'
 brew 'libyaml'
 brew 'libffi'
 brew 'chruby'
-
-# php
-brew 'php-version'
-brew 'php55'
-brew 'composer'
-brew 'php-code-sniffer'
 
 # gpg
 brew 'gpg2'
@@ -56,7 +49,7 @@ cask 'google-chrome'
 cask 'dash'
 cask 'plex-media-player'
 cask 'spectacle'
-cask 'alfred'
+cask 'visual-studio-code'
 
 # versions
 cask 'iterm2-beta'
@@ -66,6 +59,3 @@ cask 'font-inconsolata'
 cask 'font-source-code-pro'
 cask 'font-roboto-mono-for-powerline'
 
-# app store
-mas 'Captured', id: 414675451
-mas 'Irvue', id: 1039633667

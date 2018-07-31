@@ -1,4 +1,7 @@
 
+# Configure Geometry zsh theme
+# https://github.com/geometry-zsh/geometry
+
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export PROMPT_GEOMETRY_GIT_TIME=false
 

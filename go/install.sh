@@ -1,7 +1,10 @@
 #!/bin/bash
 
-[ "$(which gometalinter)" ] || {
-    mkdir -p "$GOPATH/bin" "$GOPATH/src/github.com/"
+GOPATH=${GOPATH:-$HOME/go}
+GOBIN=${GOBIN:-$HOME/go/bin}
+
+[ -f $GOBIN/gometalinter ] || {
+    mkdir -p "$GOBIN" "$GOPATH/src/github.com/"
 
     packages=(
         github.com/alecthomas/gometalinter
@@ -19,5 +22,5 @@
         go get -u "$pkg"
     done
 
-    "$GOPATH"/bin/gometalinter --install --update
+    $GOBIN/gometalinter --install --update
 }

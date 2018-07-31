@@ -37,8 +37,8 @@ sudo chflags nohidden /Volumes
 # defaults write NSGlobalDomain KeyRepeat -int 2
 # defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-echo "  › Disable transparency"
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# echo "  › Disable transparency"
+# defaults write com.apple.universalaccess reduceTransparency -bool true
 
 echo "  › Enable text replacement almost everywhere"
 defaults write -g WebAutomaticTextReplacementEnabled -bool true
@@ -56,9 +56,6 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 echo "  › Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
-
-echo "  › Don't automatically rearrange Spaces based on most recent use"
-defaults write com.apple.dock mru-spaces -bool false
 
 echo "  › Increase the window resize speed for Cocoa applications"
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -80,14 +77,14 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 echo "  › Disable the 'Are you sure you want to open this application?' dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-echo "  › Set dark interface style"
-defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+# echo "  › Set dark interface style"
+# defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
-echo "  › Set graphite appearance"
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+# echo "  › Set graphite appearance"
+# defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 
-echo "  › Set graphite highlight color"
-defaults write NSGlobalDomain AppleHighlightColor -string "0.847059 0.847059 0.862745"
+# echo "  › Set graphite highlight color"
+# defaults write NSGlobalDomain AppleHighlightColor -string "0.847059 0.847059 0.862745"
 
 echo "  › Show battery percent"
 defaults write com.apple.menuextra.battery ShowPercent -bool true
@@ -185,11 +182,6 @@ defaults write com.apple.dock launchanim -bool false
 
 echo ""
 echo "› Mail:"
-echo "  › Add the keyboard shortcut CMD + Enter to send an email"
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
-# shellcheck disable=SC2016
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Archive" '@$e'
-
 echo "  › Disable smart quotes as it's annoying for messages that contain code"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
 
@@ -201,12 +193,6 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreade
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
 
-echo "  › Disable inline attachments (just show the icons)"
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
-
-echo "  › Disable automatic spell checking"
-defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
-
 echo "  ›  Disable send and reply animations in Mail.app"
 defaults write com.apple.mail DisableReplyAnimations -bool true
 defaults write com.apple.mail DisableSendAnimations -bool true
@@ -217,53 +203,6 @@ echo ""
 echo "› Time Machine:"
 echo "  › Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-
-#############################
-
-# ssd-tweaks
-if diskutil info disk0 | grep SSD >/dev/null 2>&1; then
-	echo "  › Disable local backups"
-	# https://classicyuppie.com/what-crap-is-this-os-xs-mobilebackups/
-	sudo tmutil disablelocal
-
-	echo "  › Disable hibernation (speeds up entering sleep mode)"
-	sudo pmset -a hibernatemode 0
-
-	echo "  › Remove the sleep image file to save disk space"
-	sudo rm /private/var/vm/sleepimage
-	echo "  › Create a zero-byte file instead..."
-	sudo touch /private/var/vm/sleepimage
-	echo "  › ...and make sure it can’t be rewritten"
-	sudo chflags uchg /private/var/vm/sleepimage
-
-	echo "  ›  Disable the sudden motion sensor as it’s not useful for SSDs"
-	sudo pmset -a sms 0
-fi
-
-#############################
-
-echo ""
-echo "› Twitter.app:"
-echo "  › Disable smart quotes as it’s annoying for code tweets"
-defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
-
-echo "  › Show the app window when clicking the menu bar icon"
-defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
-
-echo "  › Enable the hidden ‘Develop’ menu"
-defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
-
-echo "  › Open links in the background"
-defaults write com.twitter.twitter-mac openLinksInBackground -bool true
-
-echo "  › Allow closing the new tweet window by pressing Esc"
-defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
-
-echo "  › Show full names rather than Twitter handles"
-defaults write com.twitter.twitter-mac ShowFullNames -bool true
-
-echo "  › Hide the app in the background if it’s not the front-most window"
-defaults write com.twitter.twitter-mac HideInBackground -bool true
 
 #############################
 

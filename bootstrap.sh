@@ -1,12 +1,16 @@
-#!/bin/bash -euo pipefail
-#
+#!/bin/bash 
+set -euo pipefail
+
 # Bootstrap a fresh system
 if [ ! -d $HOME/.dotfiles ] ; then
   git clone --recursive https://github.com/lox/dotfiles.git "$HOME/.dotfiles"
 fi
 
 # ensure we have keys loaded
-(ssh-add -l | grep -qE lachlan@.+\.local) || ssh-add ~/.ssh/id_rsa
+if ! ssh-add -l | grep -qE lachlan@.+\.local ; then
+  echo "No ssh key loaded"
+  exit 1
+fi
 
 # install homebrew
 if ! command -v brew ; then
@@ -15,11 +19,4 @@ if ! command -v brew ; then
 fi
 
 cd $HOME/.dotfiles
-
-# find .symlink files and symlink them to home
-echo -e "\\n› Creating symlinks"
-for src in $(find `pwd` -name '*.symlink') ; do
-  ln -sfv $src "$HOME/.$(basename "${src%.*}")"
-done
-
 caffeinate -i ./install.sh
