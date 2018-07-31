@@ -50,6 +50,7 @@ cask 'dash'
 cask 'plex-media-player'
 cask 'spectacle'
 cask 'visual-studio-code'
+cask 'postgres'
 
 # versions
 cask 'iterm2-beta'
