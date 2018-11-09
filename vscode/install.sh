@@ -18,8 +18,14 @@ extensions=(
   vscodevim.vim
 )
 
+installed=()
+
+while IFS=$'\n' read -r line ; do
+  installed+=("$line")
+done < <(code --list-extensions 2>/dev/null)
+
 for ext in "${extensions[@]}"; do
-  if code --list-extensions 2>/dev/null | grep -v -q "$ext" ; then
+  if grep -v -q "$ext" <<< "${installed[*]}" ; then
     echo "> Installing extension $ext"
     code --install-extension "$ext"
   else
@@ -27,8 +33,5 @@ for ext in "${extensions[@]}"; do
   fi
 done
 
-if [[ -f $HOME/Library/Application\ Support/Code/User/settings.json ]] ; then
-  cp $HOME/Library/Application\ Support/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.backup.json
-fi
-
-cp ./vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+echo "> Linking configuration"
+ln -sfv "$PWD/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"

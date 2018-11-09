@@ -6,9 +6,14 @@
   "editor.renderWhitespace": "all",
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
-  "workbench.colorTheme": "Bimbo Theme",
   "workbench.editor.enablePreview": false,
+  "workbench.colorTheme": "One Monokai",
   "window.nativeTabs": true,
+
+  // Disable git integration
+  "git.enabled": false,
+  "git.path": null,
+  "git.autofetch": false,
 
   // Custom file associations
   "files.associations": {
@@ -50,6 +55,7 @@
 
   // cloudformation settings
   "indenticator.inner.showHighlight": true,
+
   // https://github.com/redhat-developer/yaml-language-server/issues/77
   "yaml.validate": false,
 
@@ -70,6 +76,6 @@
     "rubocop": {
       "lint": true,
       "rails": true
-    },
+    }
   }
 }
