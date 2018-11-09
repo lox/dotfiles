@@ -2,8 +2,12 @@
 # Configure Geometry zsh theme
 # https://github.com/geometry-zsh/geometry
 
+unset GEOMETRY_PROMPT_PLUGINS
+GEOMETRY_PROMPT_PLUGINS=(exec_time git git_identity)
+
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export PROMPT_GEOMETRY_GIT_TIME=false
+export PROMPT_GEOMETRY_GIT_SHOW_STASHES=false
 
 export GEOMETRY_SYMBOL_PROMPT="▲"                  # default prompt symbol
 export GEOMETRY_SYMBOL_RPROMPT="⋮"                 # multiline prompts
