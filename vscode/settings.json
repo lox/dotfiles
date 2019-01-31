@@ -1,6 +1,6 @@
 {
   // General settings
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
   "workbench.startupEditor": "newUntitledFile",
   "editor.fontFamily": "Source Code Pro",
   "editor.renderWhitespace": "all",
@@ -9,6 +9,9 @@
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "One Monokai",
   "window.nativeTabs": true,
+
+  // https://github.com/Microsoft/vscode-go/issues/1613
+  "editor.formatOnSaveTimeout": 10000,
 
   // Disable git integration
   "git.enabled": false,
@@ -25,8 +28,17 @@
   "[go]": {
     "editor.tabSize": 4
   },
-  "go.autocompleteUnimportedPackages": false,
-  "go.useLanguageServer": false,
+
+//   // https://github.com/Microsoft/vscode-go/wiki/Go-modules-support-in-Visual-Studio-Code
+//   "go.alternateTools": {
+//     "go-langserver": "bingo",
+//   },
+//   "go.languageServerExperimentalFeatures": {
+//     "format": true,
+//     "autoComplete": true
+//   },
+//   "go.useLanguageServer": true,
+
   "go.lintTool": "gometalinter",
   "go.lintFlags": [
     "--disable-all",
@@ -37,21 +49,9 @@
     "--tests",
     "--deadline=20s"
   ],
-  "go.coverOnTestPackage": false,
+
   "go.testFlags": ["-v", "-race", "-p=1"],
-  "go.editorContextMenuCommands": {
-      "toggleTestFile": true,
-      "addTags": true,
-      "removeTags": false,
-      "testAtCursor": true,
-      "testFile": false,
-      "testPackage": false,
-      "generateTestForFunction": true,
-      "generateTestForFile": false,
-      "generateTestForPackage": false,
-      "addImport": true,
-      "testCoverage": true
-  },
+  "go.formatTool": "goimports",
 
   // cloudformation settings
   "indenticator.inner.showHighlight": true,
@@ -60,22 +60,22 @@
   "yaml.validate": false,
 
   // shellscript settings
-  "shellformat.path": "/Users/lachlan/go/bin/shfmt",
+  // "shellformat.path": "/Users/lachlan/go/bin/shfmt",
 
   // docker settings
   "docker.showExplorer": false,
 
   // ruby settings
-  "ruby.useBundler": true,
-  "ruby.intellisense": "rubyLocate",
-  "ruby.lintDebounceTime": 300,
-  "ruby.lint": {
-    "ruby": {
-      "unicode": true //Runs ruby -wc -Ku
-    },
-    "rubocop": {
-      "lint": true,
-      "rails": true
-    }
-  }
+  // "ruby.useBundler": true,
+  // "ruby.intellisense": "rubyLocate",
+  // "ruby.lintDebounceTime": 300,
+  // "ruby.lint": {
+  //   "ruby": {
+  //     "unicode": true //Runs ruby -wc -Ku
+  //   },
+  //   "rubocop": {
+  //     "lint": true,
+  //     "rails": true
+  //   }
+  // },
 }
