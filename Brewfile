@@ -19,11 +19,13 @@ brew 'wget'
 brew 'hub'
 brew 'ag'
 brew 'fswatch'
+brew 'watchman'
 
 # bash
 brew 'shellcheck'
 brew 'bats-assert'
 brew 'bats-file'
+brew 'shfmt'
 
 # nodejs
 brew 'npm'
@@ -33,7 +35,6 @@ brew 'go'
 
 # ruby
 brew 'ruby-install'
-brew 'openssl'
 brew 'libyaml'
 brew 'libffi'
 brew 'chruby'
