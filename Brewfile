@@ -54,7 +54,7 @@ cask 'visual-studio-code'
 cask 'postgres'
 
 # versions
-cask 'iterm2-beta'
+cask 'iterm2-nightly'
 
 # fonts
 cask 'font-inconsolata'
