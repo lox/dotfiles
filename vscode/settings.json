@@ -39,18 +39,12 @@
 //   },
 //   "go.useLanguageServer": true,
 
-  "go.lintTool": "gometalinter",
+  "go.lintTool":"golangci-lint",
   "go.lintFlags": [
-    "--disable-all",
-    "--exclude='error return value not checked.*(Close|Log|Print).*\\(errcheck\\)$'",
-    "--exclude='.*_test\\.go:.*error return value not checked.*\\(errcheck\\)$'",
-    "--exclude='duplicate of.*_test.go.*\\(dupl\\)$'",
-    "--cyclo-over=20",
-    "--tests",
-    "--deadline=20s"
+    "--fast"
   ],
 
-  "go.testFlags": ["-v", "-race", "-p=1"],
+  "go.testFlags": ["-v", "-race", "-p=1", "-failfast"],
   "go.formatTool": "goimports",
 
   // cloudformation settings
@@ -64,6 +58,7 @@
 
   // docker settings
   "docker.showExplorer": false,
+  "go.useLanguageServer": true,
 
   // ruby settings
   // "ruby.useBundler": true,
