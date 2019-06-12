@@ -4,6 +4,6 @@
 :bulk_threshold: 1000
 :backtrace: false
 :benchmark: false
-gem: --no-document
-install: --no-ri --no-rdoc
-update:  --no-ri --no-rdoc
+gem: --no-document --env-shebang
+install: --no-ri --no-rdoc --env-shebang
+update:  --no-ri --no-rdoc --env-shebang
