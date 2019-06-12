@@ -16,6 +16,7 @@ extensions=(
   SirTori.indenticator
   timonwong.shellcheck
   vscodevim.vim
+  arcticicestudio.nord-visual-studio-code
 )
 
 installed=()

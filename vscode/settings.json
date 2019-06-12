@@ -7,7 +7,7 @@
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
   "workbench.editor.enablePreview": false,
-  "workbench.colorTheme": "One Monokai",
+  "workbench.colorTheme": "Nord",
   "window.nativeTabs": true,
 
   // https://github.com/Microsoft/vscode-go/issues/1613
