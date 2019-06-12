@@ -58,7 +58,7 @@
   subu = submodule update --init --recursive
   fff = !git fetch && git ff
   pushf = push --force-with-lease
-  recent = !git branch --sort=-committerdate | head -n10
+  recent = !git branch --sort=-committerdate | head -n25
 
 [rerere]
   enabled = 1
