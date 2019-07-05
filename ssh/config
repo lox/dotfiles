@@ -2,7 +2,7 @@ Host *
 ServerAliveInterval 10
 ServerAliveCountMax 4
 AddKeysToAgent yes
-UseKeychain yes
+UseKeychain no
 IdentitiesOnly yes
 ForwardAgent no
 StrictHostKeyChecking=accept-new

@@ -23,8 +23,8 @@ brew 'watchman'
 
 # bash
 brew 'shellcheck'
-brew 'bats-assert'
-brew 'bats-file'
+brew 'bats-assert',  args: ["ignore-dependencies"]
+brew 'bats-file',  args: ["ignore-dependencies"]
 brew 'shfmt'
 
 # nodejs
@@ -52,6 +52,7 @@ cask 'plex-media-player'
 cask 'spectacle'
 cask 'visual-studio-code'
 cask 'postgres'
+cask 'sekey'
 
 # versions
 cask 'iterm2-nightly'

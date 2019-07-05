@@ -11,7 +11,6 @@ extensions=(
   kddejong.vscode-cfn-lint
   mauve.terraform
   ms-vscode.Go
-  PeterJausovec.vscode-docker
   redhat.vscode-yaml
   SirTori.indenticator
   timonwong.shellcheck
