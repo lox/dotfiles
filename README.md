@@ -5,9 +5,9 @@ A collection of my dotfiles. I tend to delete as many as I can as often as I can
 ## Installation
 
 ```bash
-git clone https://github.com/lox/dotfiles.git
-cd dotfiles
-./bootstrap
+git clone https://github.com/lox/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./bootstrap.sh
 ```
 
 ## Components

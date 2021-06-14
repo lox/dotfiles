@@ -1,8 +1,7 @@
 cask_args appdir: '/Applications'
 
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
 tap 'kaos/shell'
 tap 'getantibody/tap'
 
@@ -12,6 +11,7 @@ brew 'mas'
 brew 'antibody'
 brew 'fasd'
 brew 'direnv'
+brew 'svn'
 
 brew 'awscli'
 brew 'pv'
@@ -40,25 +40,16 @@ brew 'libffi'
 brew 'chruby'
 
 # gpg
-brew 'gpg2'
-brew 'gpg-agent'
+brew 'gpg'
 brew 'pinentry-mac'
 
 # casks
+cask '1password-cli'
 cask 'aws-vault'
-cask 'google-chrome'
-cask 'dash'
-cask 'plex-media-player'
-cask 'spectacle'
 cask 'visual-studio-code'
-cask 'postgres'
-cask 'sekey'
-
-# versions
-cask 'iterm2-nightly'
+cask 'iterm2'
 
 # fonts
 cask 'font-inconsolata'
 cask 'font-source-code-pro'
 cask 'font-roboto-mono-for-powerline'
-

@@ -20,3 +20,5 @@ find "$DOTFILES" -name 'install.sh' -mindepth 2 -print0 | while read -d $'\0' fi
   echo -e "\\n> Running installer $file"
   bash -eu -o pipefail $file
 done
+
+echo -e "\\n> Done!"

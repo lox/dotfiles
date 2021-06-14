@@ -1,10 +1,10 @@
+Include ~/.ssh/config.private
+
 Host *
 ServerAliveInterval 10
 ServerAliveCountMax 4
 AddKeysToAgent yes
-UseKeychain no
+UseKeychain yes
 IdentitiesOnly yes
 ForwardAgent no
 StrictHostKeyChecking=accept-new
-
-Include ~/.ssh/config.private

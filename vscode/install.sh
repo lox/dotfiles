@@ -9,8 +9,6 @@ extensions=(
   dlech.chmod
   EditorConfig.EditorConfig
   kddejong.vscode-cfn-lint
-  mauve.terraform
-  ms-vscode.Go
   redhat.vscode-yaml
   SirTori.indenticator
   timonwong.shellcheck
@@ -25,7 +23,7 @@ while IFS=$'\n' read -r line ; do
 done < <(code --list-extensions 2>/dev/null)
 
 for ext in "${extensions[@]}"; do
-  if grep -v -q "$ext" <<< "${installed[*]}" ; then
+  if grep -v -q "$ext" <<< "${installed[*]+"${installed[@]}"}" ; then
     echo "> Installing extension $ext"
     code --install-extension "$ext"
   else
