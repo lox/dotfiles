@@ -3,6 +3,6 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
 # these should be at the end
-frmendes/geometry
+geometry-zsh/geometry
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
