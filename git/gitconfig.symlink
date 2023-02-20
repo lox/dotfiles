@@ -10,9 +10,6 @@
 [commit]
   verbose = true
 
-[pull]
-  rebase = preserve
-
 [fetch]
   prune = true
 
@@ -37,9 +34,6 @@
   ff = only
   log = true
 
-[credential]
-  helper = osxkeychain
-
 [push]
   default = current
 
@@ -48,9 +42,6 @@
 
 [user]
   useConfigOnly = true
-
-[gpg]
-  program = gpg
 
 [alias]
   tidy = rebase -i @{upstream}..
@@ -66,3 +57,10 @@
 
 [help]
   autocorrect = 1
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+

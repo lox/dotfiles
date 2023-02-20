@@ -28,25 +28,3 @@ git-assume() {
   fi
 }
 
-github_token_command() {
-  local identity
-  local token
-
-  identity=$(git config "user.identity")
-  token=$(git config "identity.${identity}.githubtoken")
-
-  export GITHUB_TOKEN=$token
-  command "$@"
-}
-
-hub() {
-  github_token_command command hub "$@"
-}
-
-goreleaser() {
-  github_token_command command goreleaser "$@"
-}
-
-vgo() {
-  github_token_command command vgo "$@"
-}

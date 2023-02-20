@@ -11,6 +11,11 @@ config_files=($DOTFILES/*/*.zsh)
 # zsh has path magic
 path=(/usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
 
+# add arm64 homebrew path too
+if [ -d /opt/homebrew ] ; then
+  path+=(/opt/homebrew/bin)
+fi
+
 # load the path files
 for file in ${(M)config_files:#*/path.zsh} ; do
   source $file

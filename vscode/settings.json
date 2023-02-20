@@ -31,5 +31,6 @@
   "docker.showExplorer": false,
   "go.useLanguageServer": true,
   "workbench.editor.untitled.hint": "hidden",
+  "redhat.telemetry.enabled": true,
 }
 
