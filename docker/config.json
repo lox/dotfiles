@@ -1,5 +1,5 @@
 {
-  "imagesFormat" : "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}",
-  "credsStore" : "osxkeychain",
-  "psFormat" : "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}} ago\\t{{.Status}}\\t{{.Command}}"
+  "credsStore": "desktop",
+  "imagesFormat": "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}",
+  "psFormat": "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}} ago\\t{{.Status}}\\t{{.Command}}"
 }

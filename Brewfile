@@ -26,7 +26,6 @@ brew 'libffi'
 brew 'gpg'
 
 # casks
-cask '1password-cli'
 cask 'visual-studio-code'
 cask 'iterm2'
 
