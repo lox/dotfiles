@@ -8,12 +8,12 @@ export DOTFILES=$HOME/.dotfiles
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
 
-# zsh has path magic
+# zsh has path magic, homebrew bin first
 path=(/usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
 
 # add arm64 homebrew path too
 if [ -d /opt/homebrew ] ; then
-  path+=(/opt/homebrew/bin)
+  path=(/opt/homebrew/bin "${path[@]}")
 fi
 
 # load the path files
