@@ -4,6 +4,10 @@ test -d ~/.ssh || {
 	mkdir ~/.ssh
 }
 
+test -L ~/.ssh/config || {
+	ln -fsv "$DOTFILES"/ssh/config ~/.ssh/config
+}
+
 test -f "${ICLOUD_CONFIG}/ssh_config" || {
 	touch ~/.ssh/config.private
 }
