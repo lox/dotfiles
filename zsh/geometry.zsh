@@ -3,7 +3,7 @@
 # https://github.com/geometry-zsh/geometry
 
 GEOMETRY_PROMPT=(geometry_status geometry_path) 
-GEOMETRY_RPROMPT=(geometry_custom_git geometry_exec_time geometry_aws_vault geometry_git_identity)
+GEOMETRY_RPROMPT=(geometry_custom_git geometry_exec_time geometry_aws_vault geometry_git_identity geometry_hermit)
 
 export GEOMETRY_GIT_GREP=ag                   # define which grep-like tool to use
 export GEOMETRY_COLOR_NO_TIME=1 

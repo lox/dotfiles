@@ -1,5 +1,7 @@
 {
-  "credsStore": "desktop",
+  "auths": {},
+  "credsStore": "osxkeychain",
+  "currentContext": "orbstack",
   "imagesFormat": "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}",
   "psFormat": "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}} ago\\t{{.Status}}\\t{{.Command}}"
 }

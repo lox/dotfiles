@@ -17,6 +17,7 @@ brew 'pv'
 brew 'wget'
 brew 'hub'
 brew 'ag'
+brew 'hermit'
 
 # bash
 brew 'shfmt'
