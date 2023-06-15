@@ -12,31 +12,25 @@
   gpgsign = true
 
 [fetch]
-  prune = true
+  prune = true 
+
+[rebase]
+  autoStash = true
 
 [branch]
-  autosetupmerge = true
+  autoSetupRemote = true
+
+[push]
+  autoSetupRemote = true
 
 [format]
-  pretty = format:%C(blue)%h%C(reset) - %s %C(green)- %an%C(reset) %C(blue)(%ar)%C(reset)
-
-[color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = true
-  pager = true
+  pretty = format:%C(blue)%h%C(reset) - %s %C(green)- %an%C(reset) %C(blue)(%ar)%C(reset) 
 
 [color "diff"]
   whitespace = red reverse
 
 [merge]
-  ff = only
   log = true
-
-[push]
-  default = current
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
@@ -45,23 +39,20 @@
   useConfigOnly = true
 
 [alias]
-  tidy = rebase -i @{upstream}..
-  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  tidy = rebase -i @{upstream}.. 
   subu = submodule update --init --recursive
-  fff = !git fetch && git ff
-  pushf = push --force-with-lease
-  recent = !git branch --sort=-committerdate | head -n25
+  ff = merge --ff-only @{u}
+  fff = "!git fetch && git ff"
+  pushf = push --force-with-lease # Safer version of --force
+  recent = "!git branch --sort=-committerdate | head -n25"
+  track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
 
 [rerere]
   enabled = 1
   autoupdate = true
-
-[help]
-  autocorrect = 1
 
 [gpg]
   format = ssh
 
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
