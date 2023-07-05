@@ -46,7 +46,9 @@ for file in ${(M)config_files:#*/completion.zsh} ; do
   source $file
 done
 
-eval "$(hermit shell-hooks --print --zsh)"
+# Hermit shell integration
+export HERMIT_ROOT_BIN="$(brew --prefix)/bin/hermit"
+eval "$(test -x $HERMIT_ROOT_BIN && $HERMIT_ROOT_BIN shell-hooks --print --zsh)"
 
 unset config_files
 
