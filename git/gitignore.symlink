@@ -4,3 +4,4 @@
 .envrc
 .vscode/
 .vagrant/
+.hermit/
