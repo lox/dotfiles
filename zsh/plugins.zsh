@@ -56,3 +56,47 @@ geometry_hermit() {
   [ -n "${HERMIT_ENV:-}" ] || return
   echo "${GEOMETRY_GIT_SEPARATOR} 🐚"
 }
+
+geometry_firebase() {
+ local firebase_dir=$(get_firebase_dir)
+  [ -n "${firebase_dir}" ] || return
+
+  local config_project_id=$(get_config_project_id)
+  local rc_project_id=$(get_rc_project_id "$config_project_id")
+
+  if [[ "$config_project_id" == "prod" || "$rc_project_id" =~ prod ]]; then
+    # Use ansi function to set text color to white and background to red
+    echo -e "\033[41;37mfirebase:${config_project_id:-$rc_project_id} 🚨\033[0m"
+  else
+    echo "firebase:${config_project_id:-$rc_project_id}"
+  fi
+}
+
+get_firebase_dir() {
+  local dir="$PWD"
+
+  while [[ $dir != '/' ]]; do
+    local target="$dir/firebase.json"
+    if [[ -e $target ]]; then
+      echo $dir
+      break
+    else
+      dir=$(dirname ${dir:A})
+    fi
+  done
+}
+
+get_config_project_id() {
+  local target=$(get_firebase_dir)
+  local project_id=$(jq -r --arg target "$target" '.activeProjects[$target]' ~/.config/configstore/firebase-tools.json)
+  if [[ $project_id == null ]]; then
+    project_id='default'
+  fi
+  echo ${project_id}
+}
+
+get_rc_project_id() {
+  local project_id=$1
+  local rc_path="$(get_firebase_dir)/.firebaserc"
+  echo $(jq -r --arg project_id "$project_id" '.projects[$project_id]' $rc_path)
+}
