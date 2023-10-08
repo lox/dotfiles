@@ -30,7 +30,6 @@ brew 'libffi'
 brew 'gpg'
 
 # casks
-cask 'visual-studio-code'
 cask 'iterm2'
 
 # fonts
