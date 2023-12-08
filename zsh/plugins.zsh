@@ -66,9 +66,9 @@ geometry_firebase() {
 
   if [[ "$config_project_id" == "prod" || "$rc_project_id" =~ prod ]]; then
     # Use ansi function to set text color to white and background to red
-    echo -e "\033[41;37mfirebase:${config_project_id:-$rc_project_id} 🚨\033[0m"
+    echo -e "\033[41;37m${config_project_id:-$rc_project_id} 🚨\033[0m"
   else
-    echo "firebase:${config_project_id:-$rc_project_id}"
+    echo "${config_project_id:-$rc_project_id}"
   fi
 }
 
