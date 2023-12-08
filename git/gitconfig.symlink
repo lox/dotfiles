@@ -12,7 +12,7 @@
   gpgsign = true
 
 [fetch]
-  prune = true 
+  prune = true
 
 [rebase]
   autoStash = true
@@ -24,7 +24,7 @@
   autoSetupRemote = true
 
 [format]
-  pretty = format:%C(blue)%h%C(reset) - %s %C(green)- %an%C(reset) %C(blue)(%ar)%C(reset) 
+  pretty = format:%C(blue)%h%C(reset) - %s %C(green)- %an%C(reset) %C(blue)(%ar)%C(reset)
 
 [color "diff"]
   whitespace = red reverse
@@ -39,13 +39,15 @@
   useConfigOnly = true
 
 [alias]
-  tidy = rebase -i @{upstream}.. 
+  tidy = rebase -i @{upstream}..
   subu = submodule update --init --recursive
   ff = merge --ff-only @{u}
   fff = "!git fetch && git ff"
   pushf = push --force-with-lease # Safer version of --force
   recent = "!git branch --sort=-committerdate | head -n25"
   track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
+  wip = "!git add . && git commit -a --no-verify -m WIP"
+  b = "!bt() { git checkout -b lachlan/$(date +%Y-%m-%d)-$1;}; bt"
 
 [rerere]
   enabled = 1
