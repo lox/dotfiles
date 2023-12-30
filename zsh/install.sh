@@ -9,3 +9,6 @@ fi
 
 antibody bundle <"$DOTFILES/zsh/bundles.txt" >~/.zsh_plugins.sh
 antibody update
+
+mkdir -p ~/.config
+ln -s $DOTFILES/zsh/starship.toml ~/.config/starship.toml
