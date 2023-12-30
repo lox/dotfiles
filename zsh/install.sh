@@ -3,7 +3,7 @@
 zsh_bin="$(brew --prefix)/bin/zsh"
 
 if ! grep -q "$zsh_bin" /etc/shells ; then
-  sudo sh -c "printf '%s\n' '$zsh_bin'" >> /etc/shells
+  echo "$zsh_bin" | sudo tee -a /etc/shells > /dev/null
   sudo chsh -s "$zsh_bin" "$(whoami)"
 fi
 
