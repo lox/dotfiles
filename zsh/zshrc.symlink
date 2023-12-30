@@ -1,5 +1,11 @@
-
 ## Primary zsh file, delegates to .dotfiles/**/.zsh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # shortcut to this dotfiles path
 export DOTFILES=$HOME/.dotfiles
@@ -25,7 +31,6 @@ path=("$DOTFILES/bin" $path)
 export PATH
 
 # load zsh, antibody and plugins
-source $DOTFILES/zsh/geometry.zsh
 source ~/.zsh_plugins.sh
 
 # load everything but the path and completion files
@@ -55,3 +60,6 @@ unset config_files
 # delegate to defaults
 test ! -e ~/.profile || source ~/.profile
 test ! -e ~/.zprofile || source ~/.zprofile
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
