@@ -37,4 +37,4 @@ cask 'iterm2'
 # fonts
 cask 'font-inconsolata'
 cask 'font-source-code-pro'
-cask 'font-fira-code-nerd-font'
+cask 'font-sauce-code-pro-nerd-font'
