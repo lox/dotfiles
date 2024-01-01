@@ -6,11 +6,13 @@ tap 'homebrew/cask-versions'
 brew 'svn'
 brew 'git'
 
+# zsh
 brew 'coreutils'
 brew 'zsh'
 brew 'antibody'
 brew 'fasd'
 brew 'direnv'
+brew 'starship'
 
 brew 'awscli'
 brew 'pv'
@@ -35,4 +37,4 @@ cask 'iterm2'
 # fonts
 cask 'font-inconsolata'
 cask 'font-source-code-pro'
-cask 'font-roboto-mono-for-powerline'
+cask 'font-sauce-code-pro-nerd-font'
