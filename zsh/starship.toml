@@ -2,9 +2,31 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
+command_timeout = 2000
 
 [package]
 disabled = true
 
 [gcloud]
 disabled = true
+
+[ruby]
+disabled = true
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+
+[custom.hermit]
+symbol = '🦀'
+style = 'bold yellow'
+format = 'in [$symbol]($style) '
+when = ''' test -n "$HERMIT_ENV" '''
+
+[custom.firebase]
+command = 'zsh -ic "geometry_firebase"'
+symbol = '🔥 '
+style = 'bold red'
+format = 'on [$symbol$output]($style) '
+when = ''' test -f .firebaserc '''
