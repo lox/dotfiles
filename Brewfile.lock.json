@@ -2,10 +2,10 @@
   "entries": {
     "tap": {
       "homebrew/cask-fonts": {
-        "revision": "76c2f098002f84801e5b7256b51e4b5cd4d9b49a"
+        "revision": "3074f5af3123ed481151a1e2be58aad45b280acf"
       },
       "homebrew/cask-versions": {
-        "revision": "28221447e868ce5dbc7b1f8d6af7eacdc9024a4b"
+        "revision": "be814c9341391dc1e71fdd92be7674d330357905"
       }
     },
     "brew": {
@@ -995,7 +995,7 @@
         "macOS": "13.3.1"
       },
       "sonoma": {
-        "HOMEBREW_VERSION": "4.2.1",
+        "HOMEBREW_VERSION": "4.2.2",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
         "CLT": "15.1.0.0.1.1700200546",
