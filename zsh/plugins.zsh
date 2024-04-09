@@ -61,6 +61,11 @@ geometry_firebase() {
  local firebase_dir=$(get_firebase_dir)
   [ -n "${firebase_dir}" ] || return
 
+  if [[ -n "${CONNECT_EMULATORS:-}" ]]; then
+    echo "Emulator"
+    return
+  fi
+
   local config_project_id=$(get_config_project_id)
   local rc_project_id=$(get_rc_project_id "$config_project_id")
 
