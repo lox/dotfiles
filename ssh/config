@@ -1,3 +1,7 @@
+Include ~/.orbstack/ssh/config
+
+Include ~/.ssh/config.private
+
 Host *
   ServerAliveInterval 10
   ServerAliveCountMax 4

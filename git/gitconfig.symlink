@@ -7,7 +7,7 @@
 [include]
   path = ~/.gitidentities
 
-[commit]
+[ommit]
   verbose = true
   gpgsign = true
 
@@ -32,9 +32,6 @@
 [merge]
   log = true
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-
 [user]
   useConfigOnly = true
 
@@ -58,5 +55,6 @@
 
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
