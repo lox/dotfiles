@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 ## Primary zsh file, delegates to .dotfiles/**/.zsh
 
 # shortcut to this dotfiles path
@@ -7,24 +9,32 @@ export DOTFILES=$HOME/.dotfiles
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
 
-# zsh has path magic, homebrew bin first
-path=(/usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
+# On how to set PATH in macOS:
+# https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
 
-# add arm64 homebrew path too
-if [ -d /opt/homebrew ] ; then
-  path=(/opt/homebrew/bin "${path[@]}")
-fi
+# remove duplicate entries from $PATH
+typeset -U PATH path
+path=("$HOME/bin" "$DOTFILES/bin" "$HOME/.local/bin" "/opt/homebrew/sbin" "/opt/homebrew/bin" $path)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh} ; do
   source $file
 done
 
-path=("$DOTFILES/bin" $path)
-export PATH
+# Lazy-load antidote and generate the static load file only when needed
+zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
+if [[ ! ${HOME}/.zsh_plugins.zsh -nt ${HOME}/.dotfiles/zsh/zsh_plugins.txt ]]; then
+  (
+    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+    antidote bundle <${HOME}/.dotfiles/zsh/zsh_plugins.txt >${HOME}/.zsh_plugins.zsh
+  )
+fi
+source ${HOME}/.zsh_plugins.zsh
 
-# load zsh, antibody and plugins
-# source ~/.zsh_plugins.sh
+# zsh-history-substring-search configuration
+bindkey '^[[A' history-substring-search-up # or '\eOA'
+bindkey '^[[B' history-substring-search-down # or '\eOB'
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh} ; do
@@ -52,6 +62,10 @@ eval "$(test -x $HERMIT_ROOT_BIN && $HERMIT_ROOT_BIN shell-hooks --print --zsh)"
 eval "$(starship init zsh)"
 
 unset config_files
+
+# Skip forward/back a word with opt-arrow
+bindkey '[C' forward-word
+bindkey '[D' backward-word
 
 # delegate to defaults
 test ! -e ~/.profile || source ~/.profile

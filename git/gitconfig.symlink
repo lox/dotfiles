@@ -1,3 +1,6 @@
+[user]
+  useConfigOnly = true
+
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
@@ -7,7 +10,7 @@
 [include]
   path = ~/.gitidentities
 
-[ommit]
+[commit]
   verbose = true
   gpgsign = true
 
@@ -32,9 +35,6 @@
 [merge]
   log = true
 
-[user]
-  useConfigOnly = true
-
 [alias]
   tidy = rebase -i @{upstream}..
   subu = submodule update --init --recursive
@@ -44,17 +44,14 @@
   recent = "!git branch --sort=-committerdate | head -n25"
   track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
   wip = "!git add . && git commit -a --no-verify -m WIP"
-  b = "!bt() { git checkout -b lachlan/$(date +%Y-%m-%d)-$1;}; bt"
+  b = "!bt() { git checkout -b lox/$(date +%Y-%m-%d)-$1;}; bt"
 
 [rerere]
   enabled = 1
   autoupdate = true
 
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
 [init]
   defaultBranch = main
+
+[gpg]
+  format = ssh

@@ -1,16 +1,13 @@
 cask_args appdir: '/Applications'
 
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
-
 brew 'svn'
 brew 'git'
 
 # zsh
 brew 'coreutils'
 brew 'zsh'
-brew 'antibody'
-brew 'fasd'
+brew 'antidote'
+brew 'fzf'
 brew 'direnv'
 brew 'starship'
 
