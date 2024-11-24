@@ -1,10 +1,18 @@
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# Comment this line if you don't want it to be added again.
 Include ~/.orbstack/ssh/config
 
+# Private hosts
 Include ~/.ssh/config.private
 
+# Global settings
 Host *
   ServerAliveInterval 10
   ServerAliveCountMax 4
+  ForwardAgent no
+  StrictHostKeyChecking=accept-new
+
+# 1Password agent
+Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  #ForwardAgent no
-  #StrictHostKeyChecking=accept-new

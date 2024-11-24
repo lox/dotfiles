@@ -6,3 +6,4 @@
 .vagrant/
 .hermit/
 .repl-history
+.aider*

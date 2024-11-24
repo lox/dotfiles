@@ -1,8 +1,0 @@
-# this block is in alphabetic order
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
-
-# these should be at the end
-lukechilds/zsh-better-npm-completion
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-history-substring-search

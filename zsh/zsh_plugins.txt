@@ -1,0 +1,4 @@
+# add fish-like features
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
