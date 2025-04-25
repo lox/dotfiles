@@ -16,6 +16,13 @@ disabled = true
 [docker_context]
 disabled = true
 
+[kubernetes]
+disabled = false
+format = '[$symbol$context(\($namespace\))]($style) '
+symbol = "☸ "
+style = "red bold"
+# detect_files = ['k8s', 'kubernetes']
+
 [git_status]
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'

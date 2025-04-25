@@ -8,8 +8,13 @@ brew 'coreutils'
 brew 'zsh'
 brew 'antidote'
 brew 'fzf'
+brew 'fd'
 brew 'direnv'
 brew 'starship'
+
+# kubernetes
+brew 'kubetail'
+brew 'kubecolor'
 
 brew 'awscli'
 brew 'pv'

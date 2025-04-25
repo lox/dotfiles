@@ -105,3 +105,15 @@ get_rc_project_id() {
   local rc_path="$(get_firebase_dir)/.firebaserc"
   echo $(jq -r --arg project_id "$project_id" '.projects[$project_id]' $rc_path)
 }
+
+# kube-ps1
+# A geometry plugin for showing the current Kubernetes context and namespace
+
+geometry_kube_ps1() {
+  (( $+commands[kubectl] )) || return
+  local kube_context=$(kubectl config current-context 2>/dev/null)
+  local kube_namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)
+
+  [ -n "$kube_context" ] || return
+  echo "${GEOMETRY_GIT_SEPARATOR} ⎈ ${kube_context}:${kube_namespace:-default}"
+}
