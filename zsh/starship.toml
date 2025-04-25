@@ -40,3 +40,9 @@ symbol = '🔥 '
 style = 'bold red'
 format = 'on [$symbol$output]($style) '
 when = ''' test -f .firebaserc '''
+
+[custom.fzf]
+command = 'echo "⚡"'
+format = '[$symbol]($style)'
+style = 'bold yellow'
+when = ''' command -v fzf >/dev/null '''
