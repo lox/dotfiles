@@ -1,0 +1,100 @@
+{
+  //--------------------------------------------------
+  // Editor General Settings
+  //--------------------------------------------------
+  "editor.inlineSuggest.enabled": true,
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "'SauceCodePro Nerd Font Mono', 'Courier New', monospace",
+  "files.autoSave": "onFocusChange",
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.settings.editor": "json",
+
+  //--------------------------------------------------
+  // Terminal Configuration
+  //--------------------------------------------------
+  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font Mono'",
+  "terminal.integrated.environmentChangesIndicator": "on",
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.enablePersistentSessions": false,
+
+  // https://cashapp.github.io/hermit/usage/ide/#visual-studio-code-terminal
+  "terminal.integrated.env.osx": {
+    "ACTIVE_HERMIT": null,
+    "HERMIT_ENV": null,
+    "HERMIT_ENV_OPS": null,
+    "HERMIT_BIN": null
+  },
+
+  //--------------------------------------------------
+  // Language-specific Settings
+  //--------------------------------------------------
+
+  // JavaScript
+  "eslint.format.enable": true,
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
+
+  // HTML/JSON
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+
+  // Terraform
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit"
+    }
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit"
+    }
+  },
+  "[terraform][terraform-vars]": {
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit"
+    }
+  },
+  "terraform.experimentalFeatures.validateOnSave": false,
+
+  //--------------------------------------------------
+  // Language Tools and Extensions
+  //--------------------------------------------------
+  "go.toolsManagement.autoUpdate": true,
+  "go.terminal.activateEnvironment": false,
+  "python.terminal.activateEnvironment": false,
+  "redhat.telemetry.enabled": false,
+
+  //--------------------------------------------------
+  // Cursor-specific Settings
+  //--------------------------------------------------
+  "cursor.cpp.disabledLanguages": [
+    "plaintext",
+    "scminput"
+  ],
+
+  //--------------------------------------------------
+  // Live Share Configuration
+  //--------------------------------------------------
+  "liveshare.allowGuestDebugControl": true,
+  "liveshare.allowGuestTaskControl": true,
+  "liveshare.diagnosticLogging": true
+}
