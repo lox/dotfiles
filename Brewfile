@@ -34,6 +34,7 @@ brew 'gpg'
 
 # casks
 cask 'iterm2'
+cask 'cursor'
 
 # fonts
 cask 'font-inconsolata'
