@@ -1,81 +1,99 @@
 {
-  // Enable ESLint formatting
-  "eslint.format.enable": true,
+  //--------------------------------------------------
+  // Editor General Settings
+  //--------------------------------------------------
+  "editor.inlineSuggest.enabled": true,
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "'SauceCodePro Nerd Font Mono', 'Courier New', monospace",
+  "files.autoSave": "onFocusChange",
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Default Dark+",
 
-  // JavaScript specific settings
+  //--------------------------------------------------
+  // Terminal Configuration
+  //--------------------------------------------------
+  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font Mono'",
+  "terminal.integrated.environmentChangesIndicator": "on",
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.env.osx": {
+    "ACTIVE_HERMIT": null,
+    "HERMIT_ENV": null,
+    "HERMIT_ENV_OPS": null,
+    "HERMIT_BIN": null
+  },
+
+  //--------------------------------------------------
+  // Language-specific Settings
+  //--------------------------------------------------
+
+  // JavaScript
+  "eslint.format.enable": true,
+  "vs-code-prettier-eslint.prettierLast": false,
+  "js/ts.implicitProjectConfig.checkJs": true,
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.formatOnType": false, // required
-    "editor.formatOnPaste": true, // optional
-    "editor.formatOnSave": true, // optional
-    "editor.formatOnSaveMode": "file", // required to format on save
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
   },
 
-  "files.autoSave": "onFocusChange", // optional but recommended
-  "vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first
+  // HTML/JSON
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
 
-  // Terraform specific settings
-  // https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform
+  // Terraform
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.codeActionsOnSave": {
       "source.formatAll.terraform": "explicit"
     }
   },
-  // Terraform experimental features: validate on save
-  // https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform
-  "terraform.experimentalFeatures.validateOnSave": false,
-  // Terraform variables specific settings
   "[terraform-vars]": {
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.codeActionsOnSave": {
       "source.formatAll.terraform": "explicit"
     }
   },
-  "go.toolsManagement.autoUpdate": true,
-  // Disable Telemetry settings for Red Hat extensions (YAML)
-  "redhat.telemetry.enabled": false,
-  "editor.inlineSuggest.enabled": true,
-  "editor.accessibilitySupport": "off",
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "terminal.integrated.environmentChangesIndicator": "on",
-  "terminal.integrated.persistentSessionReviveProcess": "never",
-  "terminal.integrated.inheritEnv": false,
-  "liveshare.allowGuestDebugControl": true,
-  "liveshare.allowGuestTaskControl": true,
-  "liveshare.diagnosticLogging": true,
-  "js/ts.implicitProjectConfig.checkJs": true,
-  "workbench.colorTheme": "Default Dark+",
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "window.zoomLevel": 1,
-  "editor.fontFamily": "'SauceCodePro Nerd Font Mono', 'Courier New', monospace",
-  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font Mono'",
   "[terraform][terraform-vars]": {
     "editor.codeActionsOnSave": {
       "source.formatAll.terraform": "explicit"
     }
   },
+  "terraform.experimentalFeatures.validateOnSave": false,
+
+  //--------------------------------------------------
+  // Language Tools and Extensions
+  //--------------------------------------------------
+  "go.toolsManagement.autoUpdate": true,
+  "go.terminal.activateEnvironment": false,
+  "python.terminal.activateEnvironment": false,
+  "redhat.telemetry.enabled": false,
+
+  //--------------------------------------------------
+  // Cursor-specific Settings
+  //--------------------------------------------------
   "cursor.cpp.disabledLanguages": [
     "plaintext",
     "scminput"
   ],
-  "terminal.integrated.enablePersistentSessions": false,
-  "go.terminal.activateEnvironment": false,
-  "python.terminal.activateEnvironment": false,
-  "terminal.integrated.env.osx": {
-      "ACTIVE_HERMIT": null,
-      "HERMIT_ENV": null,
-      "HERMIT_ENV_OPS": null,
-      "HERMIT_BIN": null
-  },
+
+  //--------------------------------------------------
+  // Live Share Configuration
+  //--------------------------------------------------
+  "liveshare.allowGuestDebugControl": true,
+  "liveshare.allowGuestTaskControl": true,
+  "liveshare.diagnosticLogging": true
 }
