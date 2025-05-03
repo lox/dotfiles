@@ -8,6 +8,7 @@
   "files.autoSave": "onFocusChange",
   "window.zoomLevel": 1,
   "workbench.colorTheme": "Default Dark+",
+  "workbench.settings.editor": "json",
 
   //--------------------------------------------------
   // Terminal Configuration
@@ -17,6 +18,8 @@
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.enablePersistentSessions": false,
+
+  // https://cashapp.github.io/hermit/usage/ide/#visual-studio-code-terminal
   "terminal.integrated.env.osx": {
     "ACTIVE_HERMIT": null,
     "HERMIT_ENV": null,
@@ -30,8 +33,6 @@
 
   // JavaScript
   "eslint.format.enable": true,
-  "vs-code-prettier-eslint.prettierLast": false,
-  "js/ts.implicitProjectConfig.checkJs": true,
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
