@@ -17,6 +17,7 @@ alias kp='kubecolor get pods'
 alias kn='kubecolor get namespaces'
 alias kctx='kubecolor config use-context'
 alias kns='kubecolor config set-context --current --namespace'
+alias kuns='kubecolor config set-context --current --namespace default'
 
 # kubectl with fzf
 kf() {
