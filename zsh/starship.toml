@@ -1,6 +1,26 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Define the explicit order of modules
+format = """\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$all\
+$jobs\
+$status\
+$memory_usage\
+$custom_hermit\
+$custom_firebase\
+$kubernetes\
+$time\
+$cmd_duration\
+$line_break\
+$character\
+"""
+
 add_newline = true
 command_timeout = 2000
 
@@ -17,11 +37,13 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = false
-format = '[$symbol$context(\($namespace\))]($style) '
-symbol = "☸ "
-style = "red bold"
-# detect_files = ['k8s', 'kubernetes']
+disabled = false # but only when we deem it context-worthy
+style = "bg:black 117"
+format = 'in [$symbol$context( \($namespace\))]($style) '
+contexts = [
+  { context_pattern = "^(.+)\\.tail\\d+\\.ts\\.net$", context_alias = "$1" }, # Alias for tailscale domains
+  { context_pattern = ".*" },
+]
 
 [git_status]
 ahead = '⇡${count}'
@@ -40,9 +62,3 @@ symbol = '🔥 '
 style = 'bold red'
 format = 'on [$symbol$output]($style) '
 when = ''' test -f .firebaserc '''
-
-[custom.fzf]
-command = 'echo "⚡"'
-format = '[$symbol]($style)'
-style = 'bold yellow'
-when = ''' command -v fzf >/dev/null '''
