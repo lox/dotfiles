@@ -41,7 +41,8 @@ disabled = false # but only when we deem it context-worthy
 style = "bg:black 117"
 format = 'in [$symbol$context( \($namespace\))]($style) '
 contexts = [
-  { context_pattern = "^(.+)\\.tail\\d+\\.ts\\.net$", context_alias = "$1" }, # Alias for tailscale domains
+  { context_pattern = "^(.+-prod\\d+)\\.tail\\d+\\.ts\\.net$", context_alias = "$1", style = "red", symbol = "🚨 " }, # Alias for prod tailscale domains
+  { context_pattern = "^(.+)\\.tail\\d+\\.ts\\.net$", context_alias = "$1", style = "blue" }, # Alias for tailscale domains
   { context_pattern = ".*" },
 ]
 
