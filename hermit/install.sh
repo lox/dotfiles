@@ -9,5 +9,14 @@ if command -v brew &> /dev/null; then
 fi
 
 if [ ! -f "$HOME/bin/hermit" ]; then
+  # Remove any existing hermit installations
+  for dir in /opt/homebrew/bin /usr/local/bin; do
+    if [ -f "$dir/hermit" ] || [ -L "$dir/hermit" ]; then
+      echo "Removing existing hermit from $dir..."
+      rm -f "$dir/hermit" "$dir/hermit-stable"
+    fi
+  done
+
+  HERMIT_BIN_INSTALL_DIR="$HOME/bin"
   curl -fsSL https://github.com/cashapp/hermit/releases/download/stable/install.sh | /bin/bash
 fi
