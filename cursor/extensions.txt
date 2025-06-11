@@ -21,6 +21,7 @@ ms-vscode.makefile-tools
 ms-vscode.remote-explorer
 puppet.puppet-vscode
 redhat.vscode-yaml
+sourcegraph.amp
 timonwong.shellcheck
 vscodevim.vim
 yokawasa.jwt-debugger

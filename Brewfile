@@ -33,7 +33,7 @@ brew 'libffi'
 brew 'gpg'
 
 # casks
-cask 'iterm2'
+cask 'ghostty'
 cask 'cursor'
 
 # fonts
