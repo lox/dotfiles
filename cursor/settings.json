@@ -96,5 +96,9 @@
   //--------------------------------------------------
   "liveshare.allowGuestDebugControl": true,
   "liveshare.allowGuestTaskControl": true,
-  "liveshare.diagnosticLogging": true
+  "liveshare.diagnosticLogging": true,
+  "amp.commands.allowlist": [
+    "git",
+    "gh"
+  ]
 }
