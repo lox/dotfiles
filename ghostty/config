@@ -15,3 +15,4 @@ background-opacity = 0.9
 shell-integration = "detect"
 window-inherit-working-directory = true
 scrollback-limit = 10000
+keybind = shift+enter=text:\n

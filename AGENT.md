@@ -1,24 +1,41 @@
-# Dotfiles Repository Agent Guide
+# Agent Development Guide
 
-## Build/Install/Test Commands
-- **Install**: `./bootstrap.sh` (main entry point with caffeinate)
-- **Install (direct)**: `./install.sh` (creates symlinks and runs topic installers)
-- **Update**: `git pull && ./bootstrap.sh`
-- **Format shell scripts**: `shfmt -w <file>`
-- **Topic-specific installs**: Each topic has `topic/install.sh` for custom setup
+## General Development Commands
+- **Format Go**: `go fmt ./...`
+- **Test Go**: `go test ./...`
+- **Test with coverage**: `go test -cover ./...`
+- **Build**: `go build ./...`
+- **Mod tidy**: `go mod tidy`
+- **Vet code**: `go vet ./...`
+- **Install dependencies**: `go mod download`
 
-## Architecture & Structure
-This is a modular dotfiles repository for macOS configuration:
-- **Topics**: Each tool/config area has its own directory (zsh/, git/, ssh/, etc.)
-- **Symlinks**: Files ending in `.symlink` are linked to `$HOME` (e.g., `zsh/zshrc.symlink` → `~/.zshrc`)
-- **ZSH modules**: `*.zsh` files are auto-loaded by zsh, with special handling for `path.zsh` (first) and `completion.zsh` (last)
-- **Homebrew**: All packages/apps defined in `Brewfile`
-- **1Password integration**: SSH agent and git signing via 1Password
+## Go Best Practices
+- **Package structure**: Use clear, descriptive package names (avoid generic names like `util`)
+- **Naming**: Use camelCase for private, PascalCase for public exports
+- **Error handling**: Always handle errors explicitly, use `fmt.Errorf` for wrapping
+- **Context**: Pass `context.Context` as first parameter for cancellation/timeouts
+- **Interfaces**: Keep interfaces small and focused (prefer composition)
+- **Testing**: Use table-driven tests, test files end with `_test.go`
+- **Documentation**: Comment all public functions/types with proper godoc format
 
 ## Code Style & Conventions
-- **Shell scripts**: Use `set -euo pipefail` for error handling
-- **Git**: Commit signing enabled, verbose commits, force-with-lease for safety
-- **ZSH**: Antidote for plugin management, starship prompt, fzf integration
-- **Path**: Duplicate removal with typeset -U, custom bins in `$DOTFILES/bin`
-- **Naming**: Topic directories use lowercase, install scripts always named `install.sh`
-- **Dependencies**: Use Homebrew for all package management, check existence before symlinking
+- **Formatting**: Always run `go fmt` before committing
+- **Imports**: Group standard library, third-party, and local imports separately
+- **Variables**: Use short variable names in small scopes, descriptive names in larger scopes
+- **Constants**: Use `const` blocks for related constants
+- **Struct tags**: Use consistent tag formatting (json, yaml, etc.)
+- **Error types**: Create custom error types for domain-specific errors
+
+## Git & Development Workflow
+- **Branch naming**: Use simple descriptive names without prefixes
+- **Commits**: Commit signing enabled, write clear commit messages
+- **Dependencies**: Keep `go.mod` clean, use `go mod tidy` regularly
+- **Security**: Never commit secrets, use environment variables or secure vaults
+- **CI/CD**: Ensure tests pass before merging, use automated linting
+
+## Performance & Quality
+- **Benchmarking**: Use `go test -bench=.` for performance testing
+- **Profiling**: Use `go tool pprof` for CPU/memory profiling
+- **Race detection**: Run tests with `-race` flag
+- **Static analysis**: Use `golangci-lint` for comprehensive code analysis
+- **Dependency management**: Regular security updates with `go list -m -u all`
