@@ -22,7 +22,6 @@ This is a modular dotfiles repository for macOS configuration:
 ## Code Style & Conventions
 
 - **Shell scripts**: Use `set -euo pipefail` for error handling
-- **Git**: Commit signing enabled, verbose commits, force-with-lease for safety
 - **ZSH**: Antidote for plugin management, starship prompt, fzf integration
 - **Path**: Duplicate removal with typeset -U, custom bins in `$DOTFILES/bin`
 - **Naming**: Topic directories use lowercase, install scripts always named `install.sh`

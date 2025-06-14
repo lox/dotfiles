@@ -7,3 +7,4 @@
 .hermit/
 .repl-history
 .aider*
+.claude/settings.local.json
