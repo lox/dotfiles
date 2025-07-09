@@ -6,6 +6,9 @@ if [[ -f /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] ; then
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
+# Claude alias
+alias cld='vt claude --dangerously-skip-permissions'
+
 # kubectl with kubecolor
 alias k=kubecolor
 alias kc=kubecolor
