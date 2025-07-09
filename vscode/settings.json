@@ -84,21 +84,14 @@
   "redhat.telemetry.enabled": false,
 
   //--------------------------------------------------
-  // Cursor-specific Settings
-  //--------------------------------------------------
-  "cursor.cpp.disabledLanguages": [
-    "plaintext",
-    "scminput"
-  ],
-
-  //--------------------------------------------------
   // Live Share Configuration
   //--------------------------------------------------
   "liveshare.allowGuestDebugControl": true,
   "liveshare.allowGuestTaskControl": true,
   "liveshare.diagnosticLogging": true,
-  "amp.commands.allowlist": [
-    "git",
-    "gh"
-  ]
+
+  //--------------------------------------------------
+  // Zig Configuration
+  //--------------------------------------------------
+  "zig.zls.enabled": "on"
 }
