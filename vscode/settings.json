@@ -5,9 +5,10 @@
   "editor.inlineSuggest.enabled": true,
   "editor.accessibilitySupport": "off",
   "editor.fontFamily": "'SauceCodePro Nerd Font Mono', 'Courier New', monospace",
+  "editor.minimap.enabled": false,
   "files.autoSave": "onFocusChange",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "One Monokai",
   "workbench.settings.editor": "json",
 
   //--------------------------------------------------
@@ -90,5 +91,10 @@
   // Zig Configuration
   //--------------------------------------------------
   "zig.zls.enabled": "on",
-  "git.ignoreMissingGitWarning": true
+  "git.ignoreMissingGitWarning": true,
+
+  //--------------------------------------------------
+  // AmpCode Configuration
+  //--------------------------------------------------
+  "amp.url": "https://ampcode.com/"
 }
