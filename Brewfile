@@ -34,7 +34,7 @@ brew 'gpg'
 
 # casks
 cask 'ghostty'
-cask 'cursor'
+cask 'visual-studio-code'
 
 # fonts
 cask 'font-inconsolata'

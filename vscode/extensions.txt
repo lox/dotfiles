@@ -1,11 +1,14 @@
+azemoh.one-monokai
 bbenoist.nix
-bungcip.better-toml
+bierner.markdown-preview-github-styles
+davidanson.vscode-markdownlint
 dlech.chmod
 editorconfig.editorconfig
 github.vscode-github-actions
 golang.go
 hashicorp.hcl
 hashicorp.terraform
+mrmlnc.vscode-json5
 ms-azuretools.vscode-docker
 ms-python.debugpy
 ms-python.python
@@ -22,6 +25,8 @@ ms-vscode.remote-explorer
 puppet.puppet-vscode
 redhat.vscode-yaml
 sourcegraph.amp
+tamasfe.even-better-toml
 timonwong.shellcheck
 vscodevim.vim
 yokawasa.jwt-debugger
+ziglang.vscode-zig
