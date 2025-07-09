@@ -10,7 +10,7 @@ These dotfiles help configure:
 - Homebrew packages and applications
 - macOS preferences
 - vim, SSH, Docker, and other development tools
-- iTerm2 and Visual Studio Code settings
+- Ghostty terminal and Visual Studio Code settings
 - direnv for environment management
 - 1Password SSH agent integration for SSH and git commit signing
 

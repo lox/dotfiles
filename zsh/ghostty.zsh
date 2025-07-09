@@ -1,3 +1,4 @@
+# Ghostty terminal window title customization
 set-window-title() {
   # /Users/lachlan/Projects/dotfiles -> ~/p/dotfiles
   window_title="\e]0;${${PWD/#"$HOME"/~}/Projects/P}\a"
