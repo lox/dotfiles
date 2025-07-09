@@ -14,10 +14,6 @@
   // Terminal Configuration
   //--------------------------------------------------
   "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font Mono'",
-  "terminal.integrated.environmentChangesIndicator": "on",
-  "terminal.integrated.persistentSessionReviveProcess": "never",
-  "terminal.integrated.inheritEnv": false,
-  "terminal.integrated.enablePersistentSessions": false,
 
   // https://cashapp.github.io/hermit/usage/ide/#visual-studio-code-terminal
   "terminal.integrated.env.osx": {
@@ -93,5 +89,6 @@
   //--------------------------------------------------
   // Zig Configuration
   //--------------------------------------------------
-  "zig.zls.enabled": "on"
+  "zig.zls.enabled": "on",
+  "git.ignoreMissingGitWarning": true
 }
