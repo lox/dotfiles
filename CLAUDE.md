@@ -13,6 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Architecture & Structure
 
 This is a modular dotfiles repository for macOS configuration:
+
 - **Topics**: Each tool/config area has its own directory (zsh/, git/, ssh/, etc.)
 - **Symlinks**: Files ending in `.symlink` are linked to `$HOME` (e.g., `zsh/zshrc.symlink` → `~/.zshrc`)
 - **ZSH modules**: `*.zsh` files are auto-loaded by zsh, with special handling for `path.zsh` (first) and `completion.zsh` (last)
