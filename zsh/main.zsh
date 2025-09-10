@@ -37,8 +37,8 @@ bindkey '^[[A' history-substring-search-up # or '\eOA'
 bindkey '^[[B' history-substring-search-down # or '\eOB'
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh} ; do
+# load everything but the path and completion files (exclude private overrides)
+for file in ${${${config_files:#*/path.zsh}:#*/completion.zsh}:#*/*.private.zsh} ; do
   source $file
 done
 
