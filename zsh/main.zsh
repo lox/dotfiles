@@ -42,6 +42,11 @@ for file in ${${config_files:#*/path.zsh}:#*/completion.zsh} ; do
   source $file
 done
 
+# load private overrides (ignored files: zsh/*.private.zsh)
+for file in $DOTFILES/zsh/*.private.zsh(N) ; do
+  source $file
+done
+
 autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
