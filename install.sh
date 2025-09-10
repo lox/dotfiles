@@ -23,8 +23,8 @@ ZSHRC_HOOK=$(cat <<'EOF'
 # which sources your real zsh configuration from the dotfiles repo.
 DOTFILES="${HOME}/.dotfiles"
 # Prefer the new repo-managed zshrc; fall back for older clones
-if [ -f "${DOTFILES}/zsh/zshrc.zsh" ]; then
-  . "${DOTFILES}/zsh/zshrc.zsh"
+if [ -f "${DOTFILES}/zsh/main.zsh" ]; then
+  . "${DOTFILES}/zsh/main.zsh"
 elif [ -f "${DOTFILES}/zsh/zshrc.symlink" ]; then
   . "${DOTFILES}/zsh/zshrc.symlink"
 fi

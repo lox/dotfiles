@@ -5,9 +5,10 @@
 # shortcut to this dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
-# all of our zsh files
+# all of our zsh files (excluding this main file to avoid recursion)
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
+config_files=(${config_files:#$DOTFILES/zsh/main.zsh})
 
 # On how to set PATH in macOS:
 # https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
