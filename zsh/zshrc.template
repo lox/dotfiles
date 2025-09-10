@@ -1,0 +1,17 @@
+# ~/.zshrc
+#
+# This is a small, tool-friendly template that sources your
+# real zsh configuration from the dotfiles repo. Many installers
+# append lines to ~/.zshrc; keeping this file minimal reduces churn.
+
+# Dotfiles zshrc hook (BEGIN)
+DOTFILES="${HOME}/.dotfiles"
+# Prefer the new repo-managed zshrc; fall back for older clones
+if [ -f "${DOTFILES}/zsh/main.zsh" ]; then
+  . "${DOTFILES}/zsh/main.zsh"
+elif [ -f "${DOTFILES}/zsh/zshrc.symlink" ]; then
+  . "${DOTFILES}/zsh/zshrc.symlink"
+fi
+# Dotfiles zshrc hook (END)
+
+# Add any host-specific tweaks below this line.
