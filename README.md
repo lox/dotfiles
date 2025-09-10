@@ -38,7 +38,8 @@ The repository follows a modular approach:
   - `topic/*.zsh`: Files loaded into your zsh environment
   - `topic/path.zsh`: Loaded first to set up $PATH
   - `topic/completion.zsh`: Loaded last to set up autocompletion
-  - `topic/*.symlink`: Files that get symlinked to your $HOME (e.g., `zsh/zshrc.symlink` → `~/.zshrc`)
+  - `topic/*.symlink`: Files that get symlinked to your $HOME (e.g., `git/gitconfig.symlink` → `~/.gitconfig`)
+  - zsh note: `~/.zshrc` is a small wrapper that sources `${HOME}/.dotfiles/zsh/zshrc.zsh`
   - `topic/install.sh`: Topic-specific installation scripts
 - `bin/`: Executables that are added to your $PATH
 

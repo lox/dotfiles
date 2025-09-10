@@ -9,8 +9,8 @@ export DOTFILES=$(pwd)
 export ICLOUD_CONFIG=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Config
 
 echo -e "\\n› Creating symlinks"
-# Symlink all *.symlink files except zshrc.symlink (handled via ~/.zshrc template)
-for src in $(find "$(pwd)" -name '*.symlink' -not -name 'zshrc.symlink') ; do
+# Symlink all *.symlink files (zsh now uses ~/.zshrc hook instead of symlink)
+for src in $(find "$(pwd)" -name '*.symlink') ; do
   ln -sfv "$src" "$HOME/.$(basename "${src%.*}")"
 done
 
@@ -22,8 +22,10 @@ ZSHRC_HOOK=$(cat <<'EOF'
 # This file is frequently modified by tools. Keep this small hook
 # which sources your real zsh configuration from the dotfiles repo.
 DOTFILES="${HOME}/.dotfiles"
-if [ -f "${DOTFILES}/zsh/zshrc.symlink" ]; then
-  # Source the repo-managed configuration
+# Prefer the new repo-managed zshrc; fall back for older clones
+if [ -f "${DOTFILES}/zsh/zshrc.zsh" ]; then
+  . "${DOTFILES}/zsh/zshrc.zsh"
+elif [ -f "${DOTFILES}/zsh/zshrc.symlink" ]; then
   . "${DOTFILES}/zsh/zshrc.symlink"
 fi
 # Dotfiles zshrc hook (END)
