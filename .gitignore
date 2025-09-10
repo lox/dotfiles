@@ -1,2 +1,4 @@
 /ssh/config.private
 .claude/settings.local.json
+# Local, untracked zsh overrides
+/zsh/*.private.zsh

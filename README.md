@@ -35,11 +35,12 @@ The repository follows a modular approach:
 - `install.sh`: Creates symlinks and runs all topic-specific installers
 - `Brewfile`: Defines all Homebrew packages, casks, and fonts to install
 - `topic/`: Directories for each tool or area of configuration
-  - `topic/*.zsh`: Files loaded into your zsh environment
+- `topic/*.zsh`: Files loaded into your zsh environment
+  - Private overrides: files matching `zsh/*.private.zsh` are sourced if present and are gitignored
   - `topic/path.zsh`: Loaded first to set up $PATH
   - `topic/completion.zsh`: Loaded last to set up autocompletion
   - `topic/*.symlink`: Files that get symlinked to your $HOME (e.g., `git/gitconfig.symlink` → `~/.gitconfig`)
-  - zsh note: `~/.zshrc` is a small wrapper that sources `${HOME}/.dotfiles/zsh/main.zsh`
+  - zsh note: `~/.zshrc` is a small wrapper that sources `${HOME}/.dotfiles/zsh/main.zsh`. You can add host- or user-specific overrides in `~/.dotfiles/zsh/*.private.zsh`.
   - `topic/install.sh`: Topic-specific installation scripts
 - `bin/`: Executables that are added to your $PATH
 
