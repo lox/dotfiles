@@ -14,5 +14,5 @@ background-opacity = 0.9
 # Basic behavior
 shell-integration = "detect"
 window-inherit-working-directory = true
-scrollback-limit = 10000
+scrollback-limit = 1000000
 keybind = shift+enter=text:\n
