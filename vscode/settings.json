@@ -94,7 +94,20 @@
   "git.ignoreMissingGitWarning": true,
 
   //--------------------------------------------------
+  // Markdownlint Configuration
+  //--------------------------------------------------
+  "markdownlint.config": {
+    "MD022": false,
+    "MD033": false,
+    "MD013": false,
+    "MD032": false,
+    "MD031": false,
+    "MD040": false
+  },
+
+  //--------------------------------------------------
   // AmpCode Configuration
   //--------------------------------------------------
-  "amp.url": "https://ampcode.com/"
+  "amp.url": "https://ampcode.com/",
+  "amp.tab.enabled": true
 }
