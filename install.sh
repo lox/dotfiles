@@ -11,6 +11,11 @@ export ICLOUD_CONFIG=~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Config
 echo -e "\\n› Creating symlinks"
 # Symlink all *.symlink files (zsh now uses ~/.zshrc hook instead of symlink)
 for src in $(find "$(pwd)" -name '*.symlink') ; do
+  # Skip zshrc.symlink as we manage ~/.zshrc with a hook instead
+  if [[ "$(basename "$src")" == "zshrc.symlink" ]]; then
+    echo "Skipping zshrc.symlink (managed via hook)"
+    continue
+  fi
   ln -sfv "$src" "$HOME/.$(basename "${src%.*}")"
 done
 
