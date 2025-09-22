@@ -7,9 +7,11 @@
 .hermit/
 .repl-history
 .aider*
+.ck/
 .claude/settings.local.json
 CLAUDE.local.md
 .mcp.json
 /CLAUDE.md
 /AGENTS.md
 /.claude/
+.aidocs/
