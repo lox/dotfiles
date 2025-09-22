@@ -13,6 +13,19 @@ background-opacity = 0.9
 
 # Basic behavior
 shell-integration = "detect"
+shell-integration-features = "ssh-env,ssh-terminfo,title"
 window-inherit-working-directory = true
-scrollback-limit = 1000000
-keybind = shift+enter=text:\n
+
+# Scrollback limit (128Mb)
+scrollback-limit = 134217728
+
+# Quick terminal configuration
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-animation-duration = 0.20
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
+
+# Global keybinding to toggle the quick terminal (requires Accessibility perms on macOS)
+# Change to your preference if this conflicts with other apps
+keybind = global:ctrl+f12=toggle_quick_terminal
