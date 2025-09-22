@@ -109,5 +109,18 @@
   // AmpCode Configuration
   //--------------------------------------------------
   "amp.url": "https://ampcode.com/",
-  "amp.tab.enabled": true
+  "amp.tab.enabled": true,
+  "amp.dangerouslyAllowAll": true,
+  "amp.gpt5": true,
+  "amp.mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--isolated"
+      ]
+    }
+  }
 }
