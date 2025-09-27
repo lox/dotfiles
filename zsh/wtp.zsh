@@ -4,6 +4,7 @@
 # https://github.com/satococoa/wtp
 
 # Initialize wtp shell hook for cd functionality
+# Note: completion is handled in wtp/completion.zsh after compinit
 if command -v wtp >/dev/null 2>&1; then
   eval "$(wtp hook zsh)"
 fi
