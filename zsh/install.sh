@@ -15,6 +15,9 @@ PREFIX=$HOME make install
 cd .. || exit 1
 rm -rf fasd
 
+# install wtp (worktree plus) for git worktree management
+GOBIN=~/bin go install github.com/satococoa/wtp/cmd/wtp@latest
+
 mkdir -p ~/.config
 
 if [ ! -e ~/.config/starship.toml ]; then
