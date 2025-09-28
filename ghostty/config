@@ -16,8 +16,11 @@ shell-integration = "detect"
 shell-integration-features = "ssh-env,ssh-terminfo,title"
 window-inherit-working-directory = true
 
-# Scrollback limit (128Mb)
-scrollback-limit = 134217728
+# Useful keybinds
+keybind = shift+enter=text:\n
+
+# Scrollback limit (1Gb)
+scrollback-limit = 1073741824
 
 # Quick terminal configuration
 quick-terminal-position = top
