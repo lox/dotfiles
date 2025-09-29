@@ -6,7 +6,7 @@ cdx() {
   else
     codex \
       --model 'gpt-5-codex' \
-      --full-auto \
+      --dangerously-bypass-approvals-and-sandbox \
       -c model_reasoning_summary_format=experimental \
       --search "$@"
   fi
