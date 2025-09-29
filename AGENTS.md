@@ -1,5 +1,10 @@
 # Agent Development Guide
 
+> **Note**: Full agent documentation and language-specific best practices are maintained at:
+> https://github.com/lox/agent-docs
+
+## Quick Reference
+
 ## General Development Commands
 - **Format Go**: `go fmt ./...`
 - **Test Go**: `go test ./...`
