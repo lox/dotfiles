@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # reload zsh config
 alias reload!='. ~/.zshrc'
 
@@ -62,4 +64,3 @@ kdf() {
     }
   }
 }
-

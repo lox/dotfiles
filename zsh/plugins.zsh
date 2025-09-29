@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # aws_vault
 # A geometry plugin for showing the aws-vault session that is active
 

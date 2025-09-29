@@ -17,6 +17,6 @@ if [ ! -f "$HOME/bin/hermit" ]; then
     fi
   done
 
-  HERMIT_BIN_INSTALL_DIR="$HOME/bin"
+  export HERMIT_BIN_INSTALL_DIR="$HOME/bin"
   curl -fsSL https://github.com/cashapp/hermit/releases/download/stable/install.sh | /bin/bash
 fi

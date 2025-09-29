@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 export PNPM_HOME="$HOME/.pnpm"
 
 if [[ ! -d "$PNPM_HOME" ]]; then

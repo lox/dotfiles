@@ -2,7 +2,7 @@
   useConfigOnly = true
 
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/lachlan/.gitignore
   attributesfile = ~/.gitattributes
   editor = /usr/bin/vim
   ignorecase = false
@@ -58,4 +58,3 @@
 
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-
