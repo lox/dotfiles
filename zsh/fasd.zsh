@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 fasd_cache="$HOME/.fasd-init-zsh"
 

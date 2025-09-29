@@ -16,3 +16,5 @@ CLAUDE.local.md
 /.claude/
 .aidocs/
 .wtp.yml
+/AGENT.md
+/.codex/

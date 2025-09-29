@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Ghostty terminal window title customization
 set-window-title() {
   # /Users/lachlan/Projects/dotfiles -> ~/p/dotfiles
