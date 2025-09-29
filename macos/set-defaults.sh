@@ -206,7 +206,8 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 #############################
 
-read -p "Press enter to restart related apps..."
+printf "Press enter to restart related apps..."
+read -r _
 
 echo "› Kill related apps"
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
