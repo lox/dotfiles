@@ -45,6 +45,7 @@
   track = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)"
   wip = "!git add . && git commit -a --no-verify -m WIP"
   b = "!bt() { git checkout -b lox/$(date +%Y-%m-%d)-$1;}; bt"
+  sync-fork = "!git fetch upstream && git push origin upstream/main:main"
 
 [rerere]
   enabled = 1
@@ -58,3 +59,8 @@
 
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
