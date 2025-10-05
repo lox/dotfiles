@@ -16,7 +16,11 @@ cd .. || exit 1
 rm -rf fasd
 
 # install wtp (worktree plus) for git worktree management
-GOBIN=~/bin go install github.com/satococoa/wtp/cmd/wtp@latest
+if command -v go >/dev/null 2>&1; then
+  GOBIN=~/bin go install github.com/satococoa/wtp/cmd/wtp@latest
+else
+  echo "Skipping wtp installation (go not found)"
+fi
 
 mkdir -p ~/.config
 
