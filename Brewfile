@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 
 brew 'svn'
 brew 'git'
+brew 'git-lfs'
 
 # zsh
 brew 'coreutils'
