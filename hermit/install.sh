@@ -20,3 +20,8 @@ if [ ! -f "$HOME/bin/hermit" ]; then
   export HERMIT_BIN_INSTALL_DIR="$HOME/bin"
   curl -fsSL https://github.com/cashapp/hermit/releases/download/stable/install.sh | /bin/bash
 fi
+
+# Install Go via hermit for use by other installers (e.g., wtp)
+if [ ! -f "$DOTFILES/bin/go" ]; then
+  "$DOTFILES/bin/hermit" install go
+fi
