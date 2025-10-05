@@ -16,7 +16,11 @@ cd .. || exit 1
 rm -rf fasd
 
 # install wtp (worktree plus) for git worktree management
-GOBIN=~/bin go install github.com/satococoa/wtp/cmd/wtp@latest
+if [ -f "$DOTFILES/bin/go" ]; then
+  GOBIN=~/bin "$DOTFILES/bin/go" install github.com/satococoa/wtp/cmd/wtp@latest
+else
+  echo "Skipping wtp installation (go not found in hermit)"
+fi
 
 mkdir -p ~/.config
 
