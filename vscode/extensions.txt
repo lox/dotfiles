@@ -28,5 +28,4 @@ sourcegraph.amp
 tamasfe.even-better-toml
 timonwong.shellcheck
 vscodevim.vim
-yokawasa.jwt-debugger
 ziglang.vscode-zig

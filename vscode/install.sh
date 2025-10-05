@@ -24,9 +24,21 @@ if [ -f "$EXTENSIONS_FILE" ]; then
     while IFS= read -r line; do
       echo "    $line"
     done <<< "$EXTENSIONS_TO_INSTALL"
-    # Pass only the missing extensions to the install command
-    xargs -L 1 code --install-extension <<< "$EXTENSIONS_TO_INSTALL"
-    echo "  Missing extension installation complete."
+    # Install extensions one by one, continuing on failures
+    while IFS= read -r ext; do
+      # Capture output and exit code separately to avoid pipefail issues
+      if output=$(code --install-extension "$ext" 2>&1); then
+        echo "    ✓ $ext"
+      else
+        # Check if it's a "not found" error or other failure
+        if echo "$output" | grep -q "not found"; then
+          echo "    ✗ $ext (not found)"
+        else
+          echo "    ✗ $ext (failed: ${output%%$'\n'*})"
+        fi
+      fi
+    done <<< "$EXTENSIONS_TO_INSTALL"
+    echo "  Extension installation complete."
   else
     echo "  All specified extensions are already installed."
   fi
