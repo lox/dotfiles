@@ -13,6 +13,6 @@ Host *
   ForwardAgent no
   StrictHostKeyChecking=accept-new
 
-# 1Password agent
-Host *
+# 1Password agent - only when no agent is already available (e.g., from forwarding)
+Match host * exec "test -z \"$SSH_AUTH_SOCK\""
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
