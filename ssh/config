@@ -14,5 +14,5 @@ Host *
   StrictHostKeyChecking=accept-new
 
 # 1Password agent - use unless in SSH session (forwarded agent)
-Match host * exec "sh -c 'test -z \"$SSH_CONNECTION\"'"
+Match host * exec "test -z $SSH_CONNECTION"
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
