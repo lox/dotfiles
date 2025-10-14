@@ -17,6 +17,10 @@ brew 'starship'
 brew 'kubetail'
 brew 'kubecolor'
 
+# task runner
+tap 'go-task/tap'
+brew 'go-task/tap/go-task'
+
 brew 'awscli'
 brew 'pv'
 brew 'wget'
