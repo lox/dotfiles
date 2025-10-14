@@ -117,18 +117,11 @@
   "amp.url": "https://ampcode.com/",
   "amp.tab.enabled": true,
   "amp.dangerouslyAllowAll": true,
-  "amp.gpt5": true,
-  "amp.mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest",
-        "--headless",
-        "--isolated"
-      ]
-    }
-  },
+  "amp.mcpServers": {},
+  "amp.git.commit.coauthor.enabled": false,
+  "amp.git.commit.ampThread.enabled": false,
+
+
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
