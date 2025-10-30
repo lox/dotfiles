@@ -58,3 +58,7 @@
 
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[url "git@github.com:lox/"]
+  insteadOf = https://github.com/lox/
+  insteadOf = github.com/lox/
