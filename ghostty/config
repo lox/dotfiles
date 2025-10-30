@@ -9,7 +9,7 @@ font-size = 13
 window-padding-x = 10
 window-padding-y = 10
 macos-option-as-alt = true
-background-opacity = 0.9
+background-opacity = 1.0
 
 # Basic behavior
 shell-integration = "detect"
