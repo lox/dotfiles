@@ -1,0 +1,31 @@
+theme = "nord-night"
+
+[editor]
+line-number = "relative"
+cursorline = true
+true-color = true
+color-modes = true
+bufferline = "multiple"
+scrolloff = 5
+
+[editor.lsp]
+display-inlay-hints = true
+auto-signature-help = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+git-ignore = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.indent-guides]
+render = true
+
+[keys.insert]
+"C-s" = ":w"
