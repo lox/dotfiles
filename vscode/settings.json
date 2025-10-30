@@ -8,7 +8,7 @@
   "editor.minimap.enabled": false,
   "files.autoSave": "onFocusChange",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "One Monokai",
+  "workbench.colorTheme": "Solarized Dark",
   "workbench.settings.editor": "json",
 
   //--------------------------------------------------
@@ -121,7 +121,6 @@
   "amp.git.commit.coauthor.enabled": false,
   "amp.git.commit.ampThread.enabled": false,
 
-
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -133,7 +132,16 @@
     },
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+
+
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
-  }
+  },
+
+  //--------------------------------------------------
+  // Zig Configuration
+  //--------------------------------------------------
+  "zig.path": "${workspaceFolder}/bin/zig",
+  "zig.zls.warnStyle": true,
+  "git.confirmSync": false
 }

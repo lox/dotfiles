@@ -17,7 +17,7 @@ config_files=(${config_files:#$DOTFILES/zsh/main.zsh})
 if [[ -z "$HERMIT_ENV" ]]; then
   # remove duplicate entries from $PATH
   typeset -U PATH path
-  path=("$HOME/bin" "$DOTFILES/bin" "$HOME/.local/bin" $path "/opt/homebrew/sbin" "/opt/homebrew/bin")
+  path=("$HOME/bin" "$DOTFILES/bin" "$HOME/.local/bin" $path "/opt/homebrew/sbin" "/opt/homebrew/bin" "$HOME/.cargo/bin")
 
   # load the path files
   for file in ${(M)config_files:#*/path.zsh} ; do
