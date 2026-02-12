@@ -51,14 +51,6 @@ geometry_rosetta2() {
   echo "${GEOMETRY_GIT_SEPARATOR} rosetta2"
 }
 
-# hermit
-# A geometry plugin for showing the hermit session that is active
-
-geometry_hermit() {
-  [ -n "${HERMIT_ENV:-}" ] || return
-  echo "${GEOMETRY_GIT_SEPARATOR} 🐚"
-}
-
 geometry_firebase() {
  local firebase_dir=$(get_firebase_dir)
   [ -n "${firebase_dir}" ] || return
