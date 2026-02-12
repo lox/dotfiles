@@ -12,7 +12,6 @@ $all\
 $jobs\
 $status\
 $memory_usage\
-$custom_hermit\
 $custom_firebase\
 $kubernetes\
 $time\
@@ -50,12 +49,6 @@ contexts = [
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
-
-[custom.hermit]
-symbol = '🦀'
-style = 'bold yellow'
-format = 'in [$symbol]($style) '
-when = ''' test -n "$HERMIT_ENV" '''
 
 [custom.firebase]
 command = 'zsh -ic "geometry_firebase"'

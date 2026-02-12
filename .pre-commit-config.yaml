@@ -7,14 +7,14 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--severity=warning"]
-        exclude: '(\.zsh$|^bin/)'  # Exclude zsh files and hermit-managed bin/
+        exclude: '\.zsh$'
 
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.10.0-2
     hooks:
       - id: shfmt
         args: ["-i", "2", "-ci", "-bn", "-s"]
-        exclude: '(\.zsh$|^bin/)'  # Exclude zsh files and hermit-managed bin/
+        exclude: '\.zsh$'
         # -i 2: indent with 2 spaces
         # -ci: indent case statements
         # -bn: binary operators like && and | may start a line

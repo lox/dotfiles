@@ -13,17 +13,14 @@ config_files=(${config_files:#$DOTFILES/zsh/main.zsh})
 # On how to set PATH in macOS:
 # https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
 
-# Only set up PATH if we're not in a Hermit environment
-if [[ -z "$HERMIT_ENV" ]]; then
-  # remove duplicate entries from $PATH
-  typeset -U PATH path
-  path=("$HOME/bin" "$DOTFILES/bin" "$HOME/.local/bin" $path "/opt/homebrew/sbin" "/opt/homebrew/bin" "$HOME/.cargo/bin")
+# remove duplicate entries from $PATH
+typeset -U PATH path
+path=("$DOTFILES/bin" "$HOME/.local/bin" $path "/opt/homebrew/sbin" "/opt/homebrew/bin" "$HOME/.cargo/bin")
 
-  # load the path files
-  for file in ${(M)config_files:#*/path.zsh} ; do
-    source $file
-  done
-fi
+# load the path files
+for file in ${(M)config_files:#*/path.zsh} ; do
+  source $file
+done
 
 # Lazy-load antidote and generate the static load file only when needed
 zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins

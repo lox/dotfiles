@@ -4,7 +4,6 @@
 .envrc
 .vscode/
 .vagrant/
-.hermit/
 .repl-history
 .aider*
 .ck/
