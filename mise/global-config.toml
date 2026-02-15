@@ -1,0 +1,5 @@
+[settings]
+experimental = true
+
+[hooks]
+# enter = "echo 'Entered project: $MISE_PROJECT_ROOT'"

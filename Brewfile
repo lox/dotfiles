@@ -11,6 +11,7 @@ brew 'antidote'
 brew 'fzf'
 brew 'fd'
 brew 'direnv'
+brew 'mise'
 brew 'starship'
 
 # kubernetes
