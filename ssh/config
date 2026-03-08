@@ -8,8 +8,17 @@ Include ~/.ssh/config.private
 
 # Global settings
 Host *
-  ServerAliveInterval 10
-  ServerAliveCountMax 4
+  # Connection resilience
+  ConnectionAttempts 6
+  ConnectTimeout 10
+  ServerAliveInterval 15
+  ServerAliveCountMax 6
+  TCPKeepAlive no
+  ControlMaster auto
+  ControlPersist 15m
+  ControlPath ~/.ssh/cm-%C
+
+  # Security defaults
   ForwardAgent no
   StrictHostKeyChecking=accept-new
 
