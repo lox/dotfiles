@@ -13,6 +13,7 @@ $jobs\
 $status\
 $memory_usage\
 $custom_firebase\
+$aws\
 $kubernetes\
 $time\
 $cmd_duration\
@@ -34,6 +35,12 @@ disabled = true
 
 [docker_context]
 disabled = true
+
+[aws]
+disabled = false
+style = "bold yellow"
+symbol = "☁️ "
+format = 'on [$symbol$profile( \($region\))]($style) '
 
 [kubernetes]
 disabled = false # but only when we deem it context-worthy
