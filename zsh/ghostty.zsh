@@ -10,3 +10,11 @@ set-window-title() {
 PR_TITLEBAR=''
 set-window-title
 # add-zsh-hook precmd set-window-title
+
+# Reset terminal mouse tracking modes before each prompt.
+# Prevents garbage escape sequences after an SSH/tmux session dies.
+_reset_mouse_tracking() {
+  printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l'
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reset_mouse_tracking
