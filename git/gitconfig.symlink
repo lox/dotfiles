@@ -62,3 +62,9 @@
 [url "git@github.com:lox/"]
   insteadOf = https://github.com/lox/
   insteadOf = github.com/lox/
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
