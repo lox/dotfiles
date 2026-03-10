@@ -58,6 +58,72 @@ _awsctx_regions() {
   print -l ${(ou)regions}
 }
 
+_awssh_instances() {
+  command -v aws >/dev/null 2>&1 || return
+
+  local ssm_instances ec2_rows
+  local -a rows ssm_ids
+  local -A ec2_name_by_id ec2_state_by_id
+
+  ec2_rows="$(aws ec2 describe-instances \
+    --query 'Reservations[].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,State.Name]' \
+    --output text 2>/dev/null)"
+
+  if [[ -n "$ec2_rows" ]]; then
+    local id name state
+    while IFS=$'\t' read -r id name state; do
+      [[ -z "$id" ]] && continue
+      [[ "$name" == "None" ]] && name=""
+      [[ "$state" == "None" ]] && state=""
+      ec2_name_by_id[$id]="$name"
+      ec2_state_by_id[$id]="$state"
+    done <<<"$ec2_rows"
+  fi
+
+  ssm_instances="$({
+    aws ssm describe-instance-information \
+      --query 'InstanceInformationList[].InstanceId' \
+      --output text 2>/dev/null
+  } | tr '\t' '\n' | sed '/^[[:space:]]*$/d')"
+
+  if [[ -n "$ssm_instances" ]]; then
+    ssm_ids=(${(ou)${(f)ssm_instances}})
+    local label
+    for id in "${ssm_ids[@]}"; do
+      label="${ec2_name_by_id[$id]}"
+      if [[ -n "$label" ]] && [[ -n "${ec2_state_by_id[$id]}" ]]; then
+        rows+=("${id}"$'\t'"${label} (${ec2_state_by_id[$id]})")
+      elif [[ -n "$label" ]]; then
+        rows+=("${id}"$'\t'"${label}")
+      elif [[ -n "${ec2_state_by_id[$id]}" ]]; then
+        rows+=("${id}"$'\t'"${ec2_state_by_id[$id]}")
+      else
+        rows+=("${id}"$'\t'"SSM managed instance")
+      fi
+    done
+
+    print -l -- "${rows[@]}"
+    return 0
+  fi
+
+  # Fallback for regions/profiles where SSM inventory isn't available.
+  for id in ${(ok)ec2_name_by_id}; do
+    if [[ -n "${ec2_name_by_id[$id]}" ]] && [[ -n "${ec2_state_by_id[$id]}" ]]; then
+      rows+=("${id}"$'\t'"${ec2_name_by_id[$id]} (${ec2_state_by_id[$id]})")
+    elif [[ -n "${ec2_name_by_id[$id]}" ]]; then
+      rows+=("${id}"$'\t'"${ec2_name_by_id[$id]}")
+    elif [[ -n "${ec2_state_by_id[$id]}" ]]; then
+      rows+=("${id}"$'\t'"${ec2_state_by_id[$id]}")
+    else
+      rows+=("${id}"$'\t'"EC2 instance")
+    fi
+  done
+
+  if (( ${#rows[@]} > 0 )); then
+    print -l -- ${(ou)rows}
+  fi
+}
+
 awsctx() {
   emulate -L zsh
   setopt local_options no_aliases pipe_fail
@@ -108,15 +174,48 @@ EOF
   echo "AWS context: ${AWS_PROFILE}${AWS_REGION:+ (${AWS_REGION})}"
 }
 
+awssh() {
+  emulate -L zsh
+  setopt local_options no_aliases pipe_fail
+
+  local instance_id="$1"
+  shift || true
+
+  case "$instance_id" in
+    -h|--help)
+      cat <<'EOF'
+usage: awssh <instance-id> [aws ssm start-session args...]
+
+Examples:
+  awssh i-0123456789abcdef0
+  awssh i-0123456789abcdef0 --document-name AWS-StartPortForwardingSession
+EOF
+      return 0
+      ;;
+    "")
+      echo "usage: awssh <instance-id> [aws ssm start-session args...]" >&2
+      return 1
+      ;;
+  esac
+
+  if ! command -v aws >/dev/null 2>&1; then
+    echo "aws CLI not found in PATH" >&2
+    return 127
+  fi
+
+  aws ssm start-session --target "$instance_id" "$@"
+}
+
 _awsctx() {
   local -a profiles regions commands
-  local state
+  local context state state_descr line
+  typeset -A opt_args
 
   profiles=(${(f)"$(_awsctx_profiles)"})
   regions=(${(f)"$(_awsctx_regions)"})
   commands=(off clear --clear -h --help)
 
-  _arguments \
+  _arguments -C \
     '1:profile:->profile' \
     '2:region:->region'
 
@@ -130,6 +229,48 @@ _awsctx() {
       ;;
     region)
       compadd -a regions
+      ;;
+  esac
+}
+
+_awssh() {
+  local -a instances descriptions commands completion_rows
+  local context state state_descr line
+  typeset -A opt_args
+
+  completion_rows=(${(f)"$(_awssh_instances)"})
+  commands=(-h --help)
+
+  local row instance_id description
+  for row in "${completion_rows[@]}"; do
+    instance_id="${row%%$'\t'*}"
+    description="${row#*$'\t'}"
+    [[ -z "$instance_id" ]] && continue
+    instances+=("$instance_id")
+    if [[ "$description" == "$row" ]]; then
+      descriptions+=("${instance_id} - instance")
+    else
+      descriptions+=("${instance_id} - ${description}")
+    fi
+  done
+
+  _arguments -C \
+    '(-h --help)1:instance-id:->instance' \
+    '(- *)-h[show help]' \
+    '(- *)--help[show help]' \
+    '*::aws ssm start-session args:_normal'
+
+  case "$state" in
+    instance)
+      if [[ "$PREFIX" == -* ]]; then
+        compadd -a commands
+      else
+        if (( ${#instances[@]} > 0 )); then
+          compadd -d descriptions -- "${instances[@]}"
+        else
+          _message 'instance id'
+        fi
+      fi
       ;;
   esac
 }
