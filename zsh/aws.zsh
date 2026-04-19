@@ -58,6 +58,83 @@ _awsctx_regions() {
   print -l ${(ou)regions}
 }
 
+_awsctx_state_file() {
+  print -r -- "${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/awsctx"
+}
+
+_awsctx_save_state() {
+  emulate -L zsh
+  setopt local_options no_aliases pipe_fail
+
+  local profile="$1"
+  local region="$2"
+  local state_file="$(_awsctx_state_file)"
+  local state_dir="${state_file:h}"
+  local tmp_file
+
+  mkdir -p -- "$state_dir" || return 1
+  tmp_file="$(mktemp "${state_file}.tmp.XXXXXX")" || return 1
+
+  (
+    umask 077
+    {
+      print -r -- "profile=${profile}"
+      print -r -- "region=${region}"
+    } > "$tmp_file"
+  ) || {
+    rm -f -- "$tmp_file"
+    return 1
+  }
+
+  mv -f -- "$tmp_file" "$state_file" || {
+    rm -f -- "$tmp_file"
+    return 1
+  }
+}
+
+_awsctx_clear_state() {
+  local state_file="$(_awsctx_state_file)"
+  rm -f -- "$state_file"
+}
+
+_awsctx_restore_state() {
+  emulate -L zsh
+  setopt local_options no_aliases pipe_fail
+
+  local state_file="$(_awsctx_state_file)"
+  [[ -r "$state_file" ]] || return 1
+
+  local saved_profile=""
+  local saved_region=""
+  local key value
+
+  while IFS='=' read -r key value; do
+    case "$key" in
+      profile)
+        saved_profile="$value"
+        ;;
+      region)
+        saved_region="$value"
+        ;;
+    esac
+  done < "$state_file"
+
+  local restored=1
+
+  if [[ -z "${AWS_PROFILE:-}" ]] && [[ -n "$saved_profile" ]]; then
+    export AWS_PROFILE="$saved_profile"
+    restored=0
+  fi
+
+  if [[ -z "${AWS_REGION:-${AWS_DEFAULT_REGION:-}}" ]] && [[ -n "$saved_region" ]]; then
+    export AWS_REGION="$saved_region"
+    export AWS_DEFAULT_REGION="$saved_region"
+    restored=0
+  fi
+
+  return "$restored"
+}
+
 _awssh_instances() {
   command -v aws >/dev/null 2>&1 || return
 
@@ -140,11 +217,14 @@ Examples:
   awsctx buildkite-sandbox-pipelines-admin ap-southeast-2
   awsctx buildkite-sandbox-pipelines-admin
   awsctx --clear
+
+Context is persisted across new shells. Use --clear to unset and forget it.
 EOF
       return 0
       ;;
     off|clear|--clear)
       unset AWS_PROFILE AWS_REGION AWS_DEFAULT_REGION
+      _awsctx_clear_state
       echo "AWS context cleared"
       return 0
       ;;
@@ -169,6 +249,10 @@ EOF
     export AWS_DEFAULT_REGION="$region"
   else
     unset AWS_REGION AWS_DEFAULT_REGION
+  fi
+
+  if ! _awsctx_save_state "$AWS_PROFILE" "${AWS_REGION:-${AWS_DEFAULT_REGION:-}}"; then
+    echo "warning: unable to persist AWS context" >&2
   fi
 
   echo "AWS context: ${AWS_PROFILE}${AWS_REGION:+ (${AWS_REGION})}"
@@ -202,6 +286,8 @@ EOF
     echo "aws CLI not found in PATH" >&2
     return 127
   fi
+
+  _awsctx_restore_state >/dev/null 2>&1 || true
 
   aws ssm start-session --target "$instance_id" "$@"
 }
@@ -274,3 +360,5 @@ _awssh() {
       ;;
   esac
 }
+
+_awsctx_restore_state >/dev/null 2>&1 || true
