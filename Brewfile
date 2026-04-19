@@ -22,7 +22,6 @@ brew 'kubecolor'
 tap 'go-task/tap'
 brew 'go-task/tap/go-task'
 
-brew 'helix'
 brew 'awscli'
 brew 'pv'
 brew 'wget'
