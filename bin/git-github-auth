@@ -1,0 +1,200 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+  echo "Usage: git-github-auth <gh|https|ssh> [remote]" >&2
+}
+
+parse_github_url() {
+  local url="$1"
+  local repo_path
+  local owner
+  local repo
+  local rest
+
+  repo_path="${url%.git}"
+  case "$repo_path" in
+  https://github.com/*)
+    repo_path="${repo_path#https://github.com/}"
+    ;;
+  http://github.com/*)
+    repo_path="${repo_path#http://github.com/}"
+    ;;
+  git@github.com:*)
+    repo_path="${repo_path#git@github.com:}"
+    ;;
+  ssh://git@github.com/*)
+    repo_path="${repo_path#ssh://git@github.com/}"
+    ;;
+  github.com/*)
+    repo_path="${repo_path#github.com/}"
+    ;;
+  *)
+    return 1
+    ;;
+  esac
+
+  IFS=/ read -r owner repo rest <<<"$repo_path"
+  if [[ -z "$owner" || -z "$repo" || -n "$rest" ]]; then
+    return 1
+  fi
+
+  printf '%s/%s\n' "$owner" "$repo"
+}
+
+target_url_for_repo() {
+  local repo_path="$1"
+
+  case "$transport" in
+  https)
+    printf 'https://github.com/%s.git\n' "$repo_path"
+    ;;
+  ssh)
+    printf 'git@github.com:%s.git\n' "$repo_path"
+    ;;
+  esac
+}
+
+remove_repo_rewrites() {
+  local repo_path="$1"
+
+  git config "${config_scope[@]}" --remove-section "url.https://github.com/$repo_path" 2>/dev/null || true
+  git config "${config_scope[@]}" --remove-section "url.https://github.com/$repo_path.git" 2>/dev/null || true
+  git config "${config_scope[@]}" --remove-section "url.git@github.com:$repo_path" 2>/dev/null || true
+  git config "${config_scope[@]}" --remove-section "url.git@github.com:$repo_path.git" 2>/dev/null || true
+}
+
+add_worktree_rewrite() {
+  local source_url="$1"
+  local repo_path
+  local target_url
+
+  if [[ "$source_url" != *.git ]]; then
+    echo "Cannot safely rewrite non-.git URL from a linked worktree: $source_url" >&2
+    echo "Normalize the shared remote URL with .git first, or run this from the main checkout." >&2
+    exit 1
+  fi
+
+  if ! repo_path=$(parse_github_url "$source_url"); then
+    echo "Cannot infer GitHub owner/repo from remote URL: $source_url" >&2
+    exit 1
+  fi
+
+  target_url=$(target_url_for_repo "$repo_path")
+  git config "${config_scope[@]}" --add "url.$target_url.insteadOf" "$source_url"
+}
+
+set_direct_urls() {
+  local key="$1"
+  shift
+  local url
+  local repo_path
+  local target_url
+
+  git config --unset-all "$key" 2>/dev/null || true
+  for url in "$@"; do
+    if ! repo_path=$(parse_github_url "$url"); then
+      echo "Cannot infer GitHub owner/repo from remote URL: $url" >&2
+      exit 1
+    fi
+    target_url=$(target_url_for_repo "$repo_path")
+    git config --add "$key" "$target_url"
+  done
+}
+
+mode="${1:-}"
+remote="${2:-origin}"
+
+if [[ -z "$mode" ]]; then
+  usage
+  exit 2
+fi
+
+case "$mode" in
+gh | https)
+  transport="https"
+  ;;
+ssh)
+  transport="ssh"
+  ;;
+*)
+  usage
+  exit 2
+  ;;
+esac
+
+fetch_urls=()
+while IFS= read -r url; do
+  fetch_urls+=("$url")
+done < <(git config --get-all "remote.$remote.url" 2>/dev/null || true)
+
+push_urls=()
+while IFS= read -r url; do
+  push_urls+=("$url")
+done < <(git config --get-all "remote.$remote.pushurl" 2>/dev/null || true)
+
+if ((${#fetch_urls[@]} == 0)); then
+  echo "Missing remote: $remote" >&2
+  exit 1
+fi
+
+config_scope=()
+if git_dir=$(git rev-parse --git-dir 2>/dev/null) &&
+  git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null) &&
+  [[ "$git_dir" != "$git_common_dir" ]]; then
+  if [[ "$(git config --bool --get extensions.worktreeConfig 2>/dev/null)" != "true" ]]; then
+    echo "Refusing to change shared config from a linked worktree without extensions.worktreeConfig=true" >&2
+    exit 1
+  fi
+  config_scope=(--worktree)
+fi
+
+if ((${#config_scope[@]} > 0)); then
+  for url in "${fetch_urls[@]}" "${push_urls[@]}"; do
+    if [[ -z "$url" ]]; then
+      continue
+    fi
+    if [[ "$url" != *.git ]]; then
+      echo "Cannot safely rewrite non-.git URL from a linked worktree: $url" >&2
+      echo "Normalize the shared remote URL with .git first, or run this from the main checkout." >&2
+      exit 1
+    fi
+    if ! repo_path=$(parse_github_url "$url"); then
+      echo "Cannot infer GitHub owner/repo from remote URL: $url" >&2
+      exit 1
+    fi
+    remove_repo_rewrites "$repo_path"
+  done
+
+  for url in "${fetch_urls[@]}"; do
+    add_worktree_rewrite "$url"
+  done
+
+  if ((${#push_urls[@]} > 0)); then
+    for url in "${push_urls[@]}"; do
+      add_worktree_rewrite "$url"
+    done
+  fi
+else
+  for url in "${fetch_urls[@]}" "${push_urls[@]}"; do
+    if [[ -z "$url" ]]; then
+      continue
+    fi
+    if ! repo_path=$(parse_github_url "$url"); then
+      echo "Cannot infer GitHub owner/repo from remote URL: $url" >&2
+      exit 1
+    fi
+    remove_repo_rewrites "$repo_path"
+  done
+
+  set_direct_urls "remote.$remote.url" "${fetch_urls[@]}"
+  if ((${#push_urls[@]} > 0)); then
+    set_direct_urls "remote.$remote.pushurl" "${push_urls[@]}"
+  else
+    git config --unset-all "remote.$remote.pushurl" 2>/dev/null || true
+  fi
+fi
+
+echo "$remote fetch: $(git remote get-url "$remote")"
+echo "$remote push:  $(git remote get-url --push "$remote")"
