@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+  echo "Usage: git-github-auth <gh|https|ssh> [remote]" >&2
+}
+
+mode="${1:-}"
+remote="${2:-origin}"
+
+if [[ -z "$mode" ]]; then
+  usage
+  exit 2
+fi
+
+case "$mode" in
+gh | https)
+  transport="https"
+  ;;
+ssh)
+  transport="ssh"
+  ;;
+*)
+  usage
+  exit 2
+  ;;
+esac
+
+if ! current_url=$(git config --get "remote.$remote.url" 2>/dev/null); then
+  current_url=$(git remote get-url "$remote" 2>/dev/null || true)
+fi
+
+if [[ -z "$current_url" ]]; then
+  echo "Missing remote: $remote" >&2
+  exit 1
+fi
+
+repo_path="${current_url%.git}"
+case "$repo_path" in
+https://github.com/*)
+  repo_path="${repo_path#https://github.com/}"
+  ;;
+http://github.com/*)
+  repo_path="${repo_path#http://github.com/}"
+  ;;
+git@github.com:*)
+  repo_path="${repo_path#git@github.com:}"
+  ;;
+ssh://git@github.com/*)
+  repo_path="${repo_path#ssh://git@github.com/}"
+  ;;
+github.com/*)
+  repo_path="${repo_path#github.com/}"
+  ;;
+*)
+  echo "Cannot infer GitHub owner/repo from remote URL: $current_url" >&2
+  exit 1
+  ;;
+esac
+
+IFS=/ read -r owner repo _ <<<"$repo_path"
+if [[ -z "$owner" || -z "$repo" ]]; then
+  echo "Cannot infer GitHub owner/repo from remote URL: $current_url" >&2
+  exit 1
+fi
+
+repo="${repo%.git}"
+
+case "$transport" in
+https)
+  target_base="https://github.com/$owner/$repo"
+  source_base="git@github.com:$owner/$repo"
+  alt_source_base="ssh://git@github.com/$owner/$repo"
+  ;;
+ssh)
+  target_base="git@github.com:$owner/$repo"
+  source_base="https://github.com/$owner/$repo"
+  alt_source_base="github.com/$owner/$repo"
+  ;;
+esac
+
+config_scope=()
+if git_dir=$(git rev-parse --git-dir 2>/dev/null) &&
+  git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null) &&
+  [[ "$git_dir" != "$git_common_dir" ]]; then
+  if [[ "$(git config --bool --get extensions.worktreeConfig 2>/dev/null)" != "true" ]]; then
+    echo "Refusing to change shared config from a linked worktree without extensions.worktreeConfig=true" >&2
+    exit 1
+  fi
+  config_scope=(--worktree)
+fi
+
+git config "${config_scope[@]}" --remove-section "url.https://github.com/$owner/$repo" 2>/dev/null || true
+git config "${config_scope[@]}" --remove-section "url.git@github.com:$owner/$repo" 2>/dev/null || true
+
+git config "${config_scope[@]}" --add "url.$target_base.insteadOf" "$source_base"
+git config "${config_scope[@]}" --add "url.$target_base.insteadOf" "$alt_source_base"
+
+echo "$remote fetch: $(git remote get-url "$remote")"
+echo "$remote push:  $(git remote get-url --push "$remote")"

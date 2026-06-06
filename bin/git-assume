@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+identity="${1:-}"
+
+if [[ -z "$identity" ]]; then
+  echo "Usage: git-assume <identity>" >&2
+  exit 2
+fi
+
+if ! name=$(git config "identity.$identity.name"); then
+  echo "Missing name for $identity" >&2
+  exit 1
+fi
+
+if ! email=$(git config "identity.$identity.email"); then
+  echo "Missing email for $identity" >&2
+  exit 1
+fi
+
+config_scope=()
+if git_dir=$(git rev-parse --git-dir 2>/dev/null) &&
+  git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null) &&
+  [[ "$git_dir" != "$git_common_dir" ]] &&
+  [[ "$(git config --bool --get extensions.worktreeConfig 2>/dev/null)" == "true" ]]; then
+  config_scope=(--worktree)
+fi
+
+git config "${config_scope[@]}" user.identity "$identity"
+git config "${config_scope[@]}" user.name "$name"
+git config "${config_scope[@]}" user.email "$email"
+
+if signingkey=$(git config "identity.$identity.signingkey"); then
+  git config "${config_scope[@]}" user.signingkey "$signingkey"
+  git config "${config_scope[@]}" commit.gpgsign true
+else
+  git config "${config_scope[@]}" --unset user.signingkey 2>/dev/null || true
+  git config "${config_scope[@]}" commit.gpgsign false
+fi
