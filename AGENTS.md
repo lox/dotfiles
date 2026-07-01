@@ -34,6 +34,7 @@
 ## Git & Development Workflow
 - **Branch naming**: Use simple descriptive names without prefixes
 - **Commits**: Commit signing enabled, write clear commit messages
+- **Agent commits**: Codex-authored commits should run `git-assume bk-codex` before committing; Amp-authored commits should run `git-assume bk-amp`. Use plain `git commit` without `-S`. These identities are intentionally unsigned so agents do not block on 1Password signing approval.
 - **Dependencies**: Keep `go.mod` clean, use `go mod tidy` regularly
 - **Security**: Never commit secrets, use environment variables or secure vaults
 - **CI/CD**: Ensure tests pass before merging, use automated linting
